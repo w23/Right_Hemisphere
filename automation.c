@@ -124,10 +124,9 @@ static void setUniform(GLuint prog, const char *name, float t, const float *dtim
         pv += dv;
         t -= dt;
     }
-    printf("%s %.3f	", name, pv);
     oglUniform1f(oglGetUniformLocation(prog, name), pv);
 }
-static __forceinline void setUniforms(GLuint prog, float t) {printf("\n%.3f", t);
+static __forceinline void setUniforms(GLuint prog, float t) {
 	setUniform(prog, "Fade", t, udtimes_Fade, udvalues_Fade, 6);
 	setUniform(prog, "shift11", t, udtimes_shift11, udvalues_shift11, 3);
 	setUniform(prog, "zoomshift", t, udtimes_zoomshift, udvalues_zoomshift, 10);

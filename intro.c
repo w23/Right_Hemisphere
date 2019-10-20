@@ -421,7 +421,8 @@ void entrypoint(void) {
 		//uniforms[0] = itime / (float)(SAMPLES_PER_TICK);
 		//const float time_ticks = (float)mmtime.u.cb / (BYTES_PER_TICK);
 #else
-		//const float time_ticks = (timeGetTime() - start) / MS_PER_TICK;
+		const float t = (timeGetTime() - start) / 1000.0f;
+		const int itime = sizeof(SAMPLE_TYPE) * 2 * SAMPLE_RATE * (timeGetTime() - start);
 #endif
 #else
 		static int frame = 0;
