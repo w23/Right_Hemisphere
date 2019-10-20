@@ -422,7 +422,7 @@ void entrypoint(void) {
 		//const float time_ticks = (float)mmtime.u.cb / (BYTES_PER_TICK);
 #else
 		const float t = (timeGetTime() - start) / 1000.0f;
-		const int itime = sizeof(SAMPLE_TYPE) * 2 * SAMPLE_RATE * (timeGetTime() - start);
+		const int itime = sizeof(SAMPLE_TYPE) * 2 * SAMPLE_RATE * t;
 #endif
 #else
 		static int frame = 0;
