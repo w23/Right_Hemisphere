@@ -32,9 +32,15 @@ for k, v in uniforms.items():
     frames = v['frames']
     dtimes = []
     dvalues = []
+    a = v['min']
+    b = v['max']
+    times = sorted([(float(t),  a + (b-a) * v) for t, v in frames.items()], key=lambda x:x[0])
     pt = 0
     pv = 0
-    times = sorted([(float(t), v) for t, v in frames.items()], key=lambda x:x[0])
+    if times[0][0] != 0:
+        pv = times[0][1]
+        dtimes.append(0)
+        dvalues.append(pv)
     for tv in times:
         t = tv[0] / 30.0
         v = tv[1]

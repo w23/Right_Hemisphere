@@ -20,6 +20,7 @@ static const float udvalues_Fade[] = {
 
 #pragma data_seg(".udtimes_shift11")
 static const float udtimes_shift11[] = {
+	0,
 	3.0,
 	27.0,
 	90.0,
@@ -27,13 +28,15 @@ static const float udtimes_shift11[] = {
 
 #pragma data_seg(".udvalues_shift11")
 static const float udvalues_shift11[] = {
-	1,
-	-0.7107692307692308,
-	0.2615384615384616,
+	300,
+	0,
+	-213.23076923076923,
+	78.46153846153847,
 };
 
 #pragma data_seg(".udtimes_zoomshift")
 static const float udtimes_zoomshift[] = {
+	0,
 	96.0,
 	0.03333333333333144,
 	0.9666666666666686,
@@ -48,32 +51,36 @@ static const float udtimes_zoomshift[] = {
 
 #pragma data_seg(".udvalues_zoomshift")
 static const float udvalues_zoomshift[] = {
-	0.3417721518987341,
-	0.569367088607595,
-	-0.006523855890944508,
-	-0.5628432327166505,
-	0.37855513516751194,
-	-0.0310528391167193,
-	0.015772870662460692,
-	-0.012618296529968487,
-	0.003154574132492094,
-	-0.2019127101385617,
+	2.8,
+	0.0,
+	4.498,
+	-0.05153846153846153,
+	-4.446461538461539,
+	2.990585567823344,
+	-0.24531742902208276,
+	0.12460567823343904,
+	-0.09968454258675052,
+	0.02492113564668763,
+	-1.5951104100946374,
 };
 
 #pragma data_seg(".udtimes_steps")
 static const float udtimes_steps[] = {
+	0,
 	96.0,
 	0.03333333333333144,
 };
 
 #pragma data_seg(".udvalues_steps")
 static const float udvalues_steps[] = {
-	0.5,
-	-0.5,
+	3.0,
+	0.0,
+	-2.0,
 };
 
 #pragma data_seg(".udtimes_greyscale")
 static const float udtimes_greyscale[] = {
+	0,
 	96.0,
 	0.03333333333333144,
 };
@@ -81,11 +88,13 @@ static const float udtimes_greyscale[] = {
 #pragma data_seg(".udvalues_greyscale")
 static const float udvalues_greyscale[] = {
 	0,
+	0,
 	1,
 };
 
 #pragma data_seg(".udtimes_greyscale2")
 static const float udtimes_greyscale2[] = {
+	0,
 	104.0,
 	0.03333333333333144,
 	0.7000000000000028,
@@ -99,6 +108,7 @@ static const float udtimes_greyscale2[] = {
 
 #pragma data_seg(".udvalues_greyscale2")
 static const float udvalues_greyscale2[] = {
+	0,
 	0,
 	0.8501577287066246,
 	-0.41955835962145116,
@@ -124,9 +134,10 @@ static void setUniform(GLuint prog, const char *name, float t, const float *dtim
         pv += dv;
         t -= dt;
     }
+    //printf("%s %.3f	", name, pv);
     oglUniform1f(oglGetUniformLocation(prog, name), pv);
 }
-static __forceinline void setUniforms(GLuint prog, float t) {
+static __forceinline void setUniforms(GLuint prog, float t) {/*printf("\n%.3f", t);*/
 	setUniform(prog, "Fade", t, udtimes_Fade, udvalues_Fade, 6);
 	setUniform(prog, "shift11", t, udtimes_shift11, udvalues_shift11, 3);
 	setUniform(prog, "zoomshift", t, udtimes_zoomshift, udvalues_zoomshift, 10);
