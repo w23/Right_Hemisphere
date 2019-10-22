@@ -247,9 +247,11 @@ static const float udvalues_zoomXY[] = {
 
 #pragma code_seg(".setUniform")
 static void setUniform(GLuint prog, const char *name, float t, const float *dtimes, const float *dvalues, int len) {
+
     float pv = 0.f;
     for (int j = 0; j < len; ++j) {
         const float dt = dtimes[j], dv = dvalues[j];
+
         if (dt >= t) {
             t /= dt;
             pv += dv * t;
@@ -258,18 +260,18 @@ static void setUniform(GLuint prog, const char *name, float t, const float *dtim
         pv += dv;
         t -= dt;
     }
-    //printf("%s %.3f	", name, pv);
+
     oglUniform1f(oglGetUniformLocation(prog, name), pv);
 }
-static __forceinline void setUniforms(GLuint prog, float t) {/*printf("\n%.3f", t);*/
+static __forceinline void setUniforms(GLuint prog, float t) {
 	setUniform(prog, "Fade", t, udtimes_Fade, udvalues_Fade, 10);
-	setUniform(prog, "shift11", t, udtimes_shift11, udvalues_shift11, 3);
-	setUniform(prog, "zoomshift", t, udtimes_zoomshift, udvalues_zoomshift, 13);
-	setUniform(prog, "steps", t, udtimes_steps, udvalues_steps, 2);
-	setUniform(prog, "greyscale", t, udtimes_greyscale, udvalues_greyscale, 9);
-	setUniform(prog, "greyscale2", t, udtimes_greyscale2, udvalues_greyscale2, 9);
-	setUniform(prog, "timeshift", t, udtimes_timeshift, udvalues_timeshift, 8);
-	setUniform(prog, "shiftX", t, udtimes_shiftX, udvalues_shiftX, 8);
-	setUniform(prog, "shiftY", t, udtimes_shiftY, udvalues_shiftY, 4);
-	setUniform(prog, "zoomXY", t, udtimes_zoomXY, udvalues_zoomXY, 8);
+	setUniform(prog, "shift11", t, udtimes_shift11, udvalues_shift11, 4);
+	setUniform(prog, "zoomshift", t, udtimes_zoomshift, udvalues_zoomshift, 14);
+	setUniform(prog, "steps", t, udtimes_steps, udvalues_steps, 3);
+	setUniform(prog, "greyscale", t, udtimes_greyscale, udvalues_greyscale, 10);
+	setUniform(prog, "greyscale2", t, udtimes_greyscale2, udvalues_greyscale2, 10);
+	setUniform(prog, "timeshift", t, udtimes_timeshift, udvalues_timeshift, 9);
+	setUniform(prog, "shiftX", t, udtimes_shiftX, udvalues_shiftX, 9);
+	setUniform(prog, "shiftY", t, udtimes_shiftY, udvalues_shiftY, 5);
+	setUniform(prog, "zoomXY", t, udtimes_zoomXY, udvalues_zoomXY, 9);
 }
