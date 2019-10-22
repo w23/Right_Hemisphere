@@ -2,7 +2,8 @@
 
 
 uniform vec2 R_;
-uniform float t, Fade, shift11, zoomshift, steps, greyscale, greyscale2;
+uniform float t, Fade, shift11, zoomshift, steps, greyscale, greyscale2, timeshift,
+ shiftX, shiftY, zoomXY;
 
 
 vec3 massive[16]; // coordinates
@@ -52,7 +53,7 @@ vec3 findSquare(vec3 o)
         r = c;
         c.z = ( c.z + zoom ) * 4.;
         p = o - c; // move square to 0,0,0
-        p = rotate(p, (t+6.)/29. * r); // rotate over axis x,y,z
+        p = rotate(p, (t+timeshift)/29. * r); // rotate over axis x,y,z
         r = max(p - s, -p - s); // differences
         d2 = max(max(r.x,r.y),r.z); // cube distance function
         if (d2 < d)
@@ -72,7 +73,7 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
     r = c;
     c.z = ( c.z + zoom ) * 4.;
     p = o - c; // move square to 0,0,0
-    p = rotate(p, (t+6.)/29. * r); // rotate over axis x,y,z
+    p = rotate(p, (t+timeshift)/29. * r); // rotate over axis x,y,z
     r = max(p - s, -p - s); // differences
 
     return max(max(r.x,r.y),r.z); // cube distance function
@@ -82,7 +83,7 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 void main()
 {
   
-    zoom = zoomshift + smoothstep(120.,180.,t+6.)*.6 - smoothstep(240.,300.,t+6.);
+    zoom = zoomshift + smoothstep(120.,180.,t+timeshift)*.6 - smoothstep(240.,300.,t+timeshift);
     
 // objects coordinates
 
@@ -114,7 +115,7 @@ void main()
 //	float aax = 0.17;
 //	for (int bx=0; bx<3; bx++)
 //	{
-    vec2 uv = ((gl_FragCoord.xy/R_)  - vec2(.5)) / vec2(1., 16./9.) *1.4;
+    vec2 uv = ((gl_FragCoord.xy/R_)  + vec2(shiftX,shiftY)) / vec2(1., 16./9.) *zoomXY;
 //	vec2 uv = ((gl_FragCoord.xy/R_)  + vec2(aax,aay)  - vec2(.5)) / vec2(1., 16./9.) *1.4;
 
 // raymarching
