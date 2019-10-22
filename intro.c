@@ -416,8 +416,8 @@ void entrypoint(void) {
 		MMTIME mmtime;
 		mmtime.wType = TIME_BYTES;
 		CHECK(waveOutGetPosition(hWaveOut, &mmtime, sizeof(mmtime)));
-		const float t = mmtime.u.cb / sizeof(SAMPLE_TYPE) / SAMPLERATE / CHANNELS;
-		//itime = mmtime.u.cb;/// (float)(SAMPLES_PER_TICK);
+		const float t = mmtime.u.cb / sizeof(SAMPLE_TYPE) / SAMPLE_RATE / 2;
+		const int itime = mmtime.u.cb;/// (float)(SAMPLES_PER_TICK);
 		//uniforms[0] = itime / (float)(SAMPLES_PER_TICK);
 		//const float time_ticks = (float)mmtime.u.cb / (BYTES_PER_TICK);
 #else
@@ -427,7 +427,7 @@ void entrypoint(void) {
 #else
 		static int frame = 0;
 		//const int frames = MAX_SAMPLES * CAPTURE_FRAMERATE / SAMPLE_RATE;
-		itime = sizeof(SAMPLE_TYPE) * 2 * SAMPLE_RATE * frame++ / CAPTURE_FRAMERATE;
+		const int itime = sizeof(SAMPLE_TYPE) * 2 * SAMPLE_RATE * frame++ / CAPTURE_FRAMERATE;
 #endif
 
 		introPaint(t);

@@ -12,21 +12,22 @@ set OPTS= ^
 	/TINYIMPORT ^
 	/TINYHEADER
 set CLOPTS=/GS- /analyze- /W3 /Gy- /Zc:wchar_t /Zi /Gm- /O1 /Ob1 /sdl-  /Zc:inline /fp:fast /Zp1 /D "FULLSCREEN=1" /D "_MBCS" /errorReport:prompt /GF /WX- /Zc:forScope /GR- /arch:IA32 /Gz /Oy /MT /FC /nologo /Zl /FAcs /Os /diagnostics:classic /QIfist ^
-	/D "NO_AUDIO" ^
 	/c
+
+REM /D "NO_AUDIO" ^
 
 
 shader_minifier.exe -o shader.glsl.h --preserve-externals shader.glsl
-cl %CLOPTS% intro.c
+cl %CLOPTS% /GS- intro.c
 REM /out:intro.o
 
-REM nasm.exe -fwin32 -o intro.o intro.asm || exit /b 1
+nasmw.exe -fwin32 -o 4klang.obj 4klang.asm || exit /b 1
 
 link.exe ^
 	%OPTS% ^
 	/COMPMODE:FAST /REPORT:report-fast.html ^
 	%LIBS% ^
-	intro.obj /OUT:intro-fast.exe ^
+	4klang.obj intro.obj /OUT:intro-fast.exe ^
 	|| exit /b 2
 
 pause
