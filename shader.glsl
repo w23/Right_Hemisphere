@@ -4,7 +4,7 @@
 // #define deltaAA .0003
 
 
-uniform vec2 R_;
+
 uniform float t, Fade, shift11, zoomshift, steps, greyscale, greyscale2, timeshift,
  shiftX, shiftY, zoomXY, red, skip, distort;
 
@@ -83,8 +83,8 @@ for (int by=0; by<3; by++)
 aax = deltaAA/2.;
 for (int bx=0; bx<3; bx++)
 {
-//  vec2 uv = ((gl_FragCoord.xy/R_) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
-	vec2 uv = ((gl_FragCoord.xy/R_) + vec2(aax,aay) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
+//  vec2 uv = ((gl_FragCoord.xy/vec2(1920.,1080.)) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
+	vec2 uv = ((gl_FragCoord.xy/vec2(1920.,1080.)) + vec2(aax,aay) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
 
 // raymarching
 	l = 1.;

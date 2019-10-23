@@ -320,7 +320,7 @@ static __forceinline void introPaint(float t) {
 	GLCHECK();
 	setUniforms(program, t);
 	oglUniform1f(oglGetUniformLocation(program, "t"), t);
-	oglUniform2f(oglGetUniformLocation(program, "R_"), WIDTH, HEIGHT);
+	//oglUniform2f(oglGetUniformLocation(program, "R_"), WIDTH, HEIGHT);
 	GLCHECK();
 	glRects(-1, -1, 1, 1);
 	GLCHECK();

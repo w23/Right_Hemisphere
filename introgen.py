@@ -17,7 +17,7 @@ source = json.load(args.input)
 shader = source['fragment']
 uniforms = source['variables']
 
-shader = shader.replace('precision highp float;', '').replace('varying vec2 coordVar;', 'uniform vec2 R_;').replace('coordVar', '(gl_FragCoord.xy/R_)')
+shader = shader.replace('precision highp float;', '').replace('varying vec2 coordVar;', '').replace('coordVar', '(gl_FragCoord.xy/vec2(1920.,1080.))')
 
 args.shader.write(shader)
 
