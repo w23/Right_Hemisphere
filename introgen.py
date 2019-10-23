@@ -21,9 +21,6 @@ shader = shader.replace('precision highp float;', '').replace('varying vec2 coor
 
 args.shader.write(shader)
 
-names = []
-lengths = []
-
 def writeArray(name, dvalues):
     args.automation.write('#pragma data_seg(\".{}\")\n'.format(name))
     args.automation.write('static const float {}[] = {{\n'.format(name))
@@ -31,35 +28,40 @@ def writeArray(name, dvalues):
         args.automation.write('\t{},\n'.format(v))
     args.automation.write('};\n\n')
 
-for k, v in uniforms.items():
-    frames = v['frames']
-    dtimes = []
-    dvalues = []
-    a = v['min']
-    b = v['max']
-    times = sorted([(float(t),  a + (b-a) * v) for t, v in frames.items()], key=lambda x:x[0])
-    if args.verbose:
-        print(k, times)
-    pt = 0
-    pv = 0
-    if times[0][0] != 0:
-        pv = times[0][1]
-        dtimes.append(0)
-        dvalues.append(pv)
-    for tv in times:
-        t = tv[0] / 30.0
-        v = tv[1]
-        assert(t >= pt)
-        dtimes.append(t - pt)
-        dvalues.append(v - pv)
-        pt = t
-        pv = v
-    if args.verbose:
-        print(k, dtimes, dvalues)
-    names.append(k)
-    lengths.append(len(dtimes))
-    writeArray("udtimes_" + k, dtimes)
-    writeArray("udvalues_" + k, dvalues)
+class Uniform:
+    def __init__(self, name, data):
+        frames = data['frames']
+        dtimes = []
+        dvalues = []
+        base = data['min']
+        delta = data['max'] - base
+        times = sorted([(float(t),  base + delta * v) for t, v in frames.items()], key=lambda x:x[0])
+        if args.verbose:
+            print(name, times)
+        pt = 0
+        pv = 0
+        if times[0][0] != 0:
+            pv = times[0][1]
+            dtimes.append(0)
+            dvalues.append(pv)
+        for tv in times:
+            t = tv[0] / 30.0
+            v = tv[1]
+            assert(t >= pt)
+            dtimes.append(t - pt)
+            dvalues.append(v - pv)
+            pt = t
+            pv = v
+        if args.verbose:
+            print(name, dtimes, dvalues)
+
+        self.name = name
+        self.length = len(dtimes)
+
+        writeArray("udtimes_" + name, dtimes)
+        writeArray("udvalues_" + name, dvalues)
+
+uniforms = [Uniform(k, v) for k, v in uniforms.items()]
 
 reader_C = """
 #pragma code_seg(".setUniform")
@@ -101,6 +103,6 @@ args.automation.write(reader_C)
 args.automation.write('static __forceinline void setUniforms(GLuint prog, float t) {\n')
 if args.printf:
     args.automation.write('\tprintf("\\n%.3f ", t);\n')
-for i, n in enumerate(names):
-    args.automation.write('\tsetUniform(prog, "{}", t, udtimes_{}, udvalues_{}, {});\n'.format(n,n,n,lengths[i]))
+for u in uniforms:
+    args.automation.write('\tsetUniform(prog, "{}", t, udtimes_{}, udvalues_{}, {});\n'.format(u.name, u.name, u.name, u.length))
 args.automation.write('}\n')
