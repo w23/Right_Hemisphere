@@ -11,7 +11,8 @@ parser.add_argument('--verbose', action='store_true', help='Be verbose')
 parser.add_argument('--printf', action='store_true', help='Add printf to debug envelope unpacking')
 parser.add_argument('--printf2', action='store_true', help='Add even more printf to debug envelope unpacking')
 parser.add_argument('--vprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored values')
-parser.add_argument('--tprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored times')
+#parser.add_argument('--tprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored times')
+parser.add_argument('--noshort', action='store_true', help='Don\'t rename uniforms')
 parser.add_argument('input', type=argparse.FileType('r'), help='Input intro.txt file (json)')
 args = parser.parse_args()
 
@@ -80,6 +81,7 @@ class Uniform:
             print(name, ktimes, values)
 
         self.name = name
+        self.uniform_name = '"{}"'.format(name) if args.noshort else 'VAR_' + name.upper()
         self.length = len(ktimes)
 
         writeTimes("udtimes_" + name, ktimes)
@@ -164,8 +166,8 @@ if args.printf:
     args.automation.write('\tprintf("\\n%.3f ", t);\n')
 for u in uniforms:
     if args.vprec == 'df32':
-        args.automation.write('\tsetUniform(prog, "{}", t, udtimes_{}, udvalues_{}, {});\n'.format(u.name, u.name, u.name, u.length))
+        args.automation.write('\tsetUniform(prog, {}, t, udtimes_{}, udvalues_{}, {});\n'.format(u.uniform_name, u.name, u.name, u.length))
     elif args.vprec == 'du16':
         args.automation.write(
-            '\tsetUniform(prog, "{}", t, udtimes_{}, udvalues_{}, udvalues_{}_base, udvalues_{}_delta, {});\n'.format(u.name, u.name, u.name, u.name, u.name, u.length))
+            '\tsetUniform(prog, {}, t, udtimes_{}, udvalues_{}, udvalues_{}_base, udvalues_{}_delta, {});\n'.format(u.uniform_name, u.name, u.name, u.name, u.name, u.length))
 args.automation.write('}\n')

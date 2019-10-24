@@ -548,18 +548,18 @@ static void setUniform(GLuint prog, const char *name, float t, const float *dtim
     oglUniform1f(oglGetUniformLocation(prog, name), pv);
 }
 static __forceinline void setUniforms(GLuint prog, float t) {
-	setUniform(prog, "Fade", t, udtimes_Fade, udvalues_Fade, 13);
-	setUniform(prog, "shift11", t, udtimes_shift11, udvalues_shift11, 8);
-	setUniform(prog, "zoomshift", t, udtimes_zoomshift, udvalues_zoomshift, 34);
-	setUniform(prog, "steps", t, udtimes_steps, udvalues_steps, 13);
-	setUniform(prog, "greyscale", t, udtimes_greyscale, udvalues_greyscale, 17);
-	setUniform(prog, "greyscale2", t, udtimes_greyscale2, udvalues_greyscale2, 12);
-	setUniform(prog, "timeshift", t, udtimes_timeshift, udvalues_timeshift, 15);
-	setUniform(prog, "shiftX", t, udtimes_shiftX, udvalues_shiftX, 18);
-	setUniform(prog, "shiftY", t, udtimes_shiftY, udvalues_shiftY, 15);
-	setUniform(prog, "zoomXY", t, udtimes_zoomXY, udvalues_zoomXY, 25);
-	setUniform(prog, "red", t, udtimes_red, udvalues_red, 26);
-	setUniform(prog, "skip", t, udtimes_skip, udvalues_skip, 6);
-	setUniform(prog, "distort", t, udtimes_distort, udvalues_distort, 4);
-	setUniform(prog, "scene", t, udtimes_scene, udvalues_scene, 3);
+	setUniform(prog, VAR_FADE, t, udtimes_Fade, udvalues_Fade, 13);
+	setUniform(prog, VAR_SHIFT11, t, udtimes_shift11, udvalues_shift11, 8);
+	setUniform(prog, VAR_ZOOMSHIFT, t, udtimes_zoomshift, udvalues_zoomshift, 34);
+	setUniform(prog, VAR_STEPS, t, udtimes_steps, udvalues_steps, 13);
+	setUniform(prog, VAR_GREYSCALE, t, udtimes_greyscale, udvalues_greyscale, 17);
+	setUniform(prog, VAR_GREYSCALE2, t, udtimes_greyscale2, udvalues_greyscale2, 12);
+	setUniform(prog, VAR_TIMESHIFT, t, udtimes_timeshift, udvalues_timeshift, 15);
+	setUniform(prog, VAR_SHIFTX, t, udtimes_shiftX, udvalues_shiftX, 18);
+	setUniform(prog, VAR_SHIFTY, t, udtimes_shiftY, udvalues_shiftY, 15);
+	setUniform(prog, VAR_ZOOMXY, t, udtimes_zoomXY, udvalues_zoomXY, 25);
+	setUniform(prog, VAR_RED, t, udtimes_red, udvalues_red, 26);
+	setUniform(prog, VAR_SKIP, t, udtimes_skip, udvalues_skip, 6);
+	setUniform(prog, VAR_DISTORT, t, udtimes_distort, udvalues_distort, 4);
+	setUniform(prog, VAR_SCENE, t, udtimes_scene, udvalues_scene, 3);
 }

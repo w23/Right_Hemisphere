@@ -17,7 +17,7 @@ set CLOPTS=/GS- /analyze- /W3 /Gy- /Zc:wchar_t /Zi /Gm- /O1 /Ob1 /sdl-  /Zc:inli
 REM /D "NO_AUDIO" ^
 
 
-shader_minifier.exe -o shader.glsl.h --preserve-externals shader.glsl
+shader_minifier.exe -o shader.glsl.h shader.glsl
 cl %CLOPTS% /GS- intro.c
 REM /out:intro.o
 
