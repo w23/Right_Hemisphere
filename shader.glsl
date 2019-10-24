@@ -1,12 +1,12 @@
 // Right Hemisphere intro
 
-#define deltaAA 1./(3.*1080.)
+#define deltaAA 1./(3.*710.)
 // #define deltaAA .0003
 
 
 
 uniform float t, Fade, shift11, zoomshift, steps, greyscale, greyscale2, timeshift,
- shiftX, shiftY, zoomXY, red, skip, distort;
+ shiftX, shiftY, zoomXY, red, skip, distort, scene;
 
 
 vec3 massive[16]; // coordinates
@@ -45,13 +45,41 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 }
 
 
+vec2 zmul(in vec2 a, in vec2 b)
+{
+return vec2(a.x * b.x - a.y * b.y, a.y * b.x + a.x * b.y);
+}
+
+vec2 zln(vec2 xy)
+{
+return vec2( log(length(xy)) , atan(xy.y,xy.x));
+}
+
+
 void main()
 {
   
     zoom = zoomshift + smoothstep(120.,180.,t+timeshift)*.6 - smoothstep(240.,300.,t+timeshift);
-    
-// objects coordinates
 
+    float l, d, d2, e = .0001, aax, aay = deltaAA/2.; // ray length, current distance, epsilon, anti-aliasing
+
+    vec3 xyz, color = vec3(0.), c, grey, // 3d-coordinates, final color, aa-color
+    p, r, found1, found2, s = vec3(.5,.5,.001), // moved vector, center, rotation, found square, square size
+    norm = vec3(0.,0.,0.), ex = vec3(e,0.,0.), ey = vec3(0.,e,0.), ez = vec3(0.,0.,e);
+
+// antialiasing
+for (int by=0; by<3; by++)
+{
+aax = deltaAA/2.;
+for (int bx=0; bx<3; bx++)
+{
+vec2 uv = ((gl_FragCoord.xy/vec2(1920.,1080.)) + vec2(aax,aay) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
+//  vec2 uv = ((gl_FragCoord.xy/vec2(1920.,1080.)) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
+
+if (scene<1.) // scene 1
+{
+
+// objects coordinates
     massive[0] = fill(.044677,.928527,.337524);
     massive[1] = fill(.520019,.026367,.486328);
     massive[2] = fill(.026125,.984497,.337249);
@@ -68,23 +96,7 @@ void main()
     massive[13]= fill(.846801,.820800,.397094);
     massive[14]= fill(.905029,.469421,.400512);
     massive[15]= fill(.725585,.835769,.054077);    
-    
     massive[11]-=shift11/vec3(70.,110.,-180.); // move closest object 
-
-    float l, d, d2, e = .0001, aax, aay = deltaAA/2.; // ray length, current distance, epsilon, anti-aliasing
-
-    vec3 xyz, color = vec3(0.), c, grey, // 3d-coordinates, final color, aa-color
-    p, r, found1, found2, s = vec3(.5,.5,.001), // moved vector, center, rotation, found square, square size
-    norm = vec3(0.,0.,0.), ex = vec3(e,0.,0.), ey = vec3(0.,e,0.), ez = vec3(0.,0.,e);
-
-// antialiasing
-for (int by=0; by<3; by++)
-{
-aax = deltaAA/2.;
-for (int bx=0; bx<3; bx++)
-{
-//  vec2 uv = ((gl_FragCoord.xy/vec2(1920.,1080.)) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
-	vec2 uv = ((gl_FragCoord.xy/vec2(1920.,1080.)) + vec2(aax,aay) + vec2(shiftX,shiftY)) / vec2(1., 16./9.) * zoomXY;
 
 // raymarching
 	l = 1.;
@@ -139,14 +151,32 @@ for (int bx=0; bx<3; bx++)
 
     color += clamp(c, 0., 1.); // accumulate aa-color
 
+    grey = vec3(color.r+color.b*greyscale2);
+    color = (1.-greyscale)*color+grey*greyscale;
+    color.xz+=red*vec2(abs(norm.y),color.b/3.);
+
+}
+else // scene 2
+{
+    vec2 temp1,temp2, xy = uv;
+
+    for(int i=0; i<9; i++)
+    {
+        temp1 = zmul(xy,vec2(2.,2.1)) + vec2(.3,-2.-greyscale);
+        temp2 = zmul(zln(zmul(xy,vec2(greyscale2-2.,1.6)) + vec2(-1.4,-1.75)),vec2(-2.,1.6));
+        temp2 /= pow(length(temp2),2.);
+        xy = zln( zmul(temp1, vec2(cos(temp2.y) * exp(temp2.x), sin(temp2.y) * exp(temp2.x))) );
+    }
+    xy=abs(xy);
+
+    color += vec3(xy.y, pow(length(xy)/3.5,1.8), xy.x/3.);
+
+}
 aax += deltaAA; // end of antialiasing loop 
 }
 aay += deltaAA;
 }  
 color /= 9.; // normalize aa-color
 
-    grey = vec3(color.r+color.b*greyscale2);
-    color = (1.-greyscale)*color+grey*greyscale;
-    color.xz+=red*vec2(abs(norm.y),color.b/3.);
     gl_FragColor = vec4(color * Fade, 1.);
 }
