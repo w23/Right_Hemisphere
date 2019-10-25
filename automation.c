@@ -1,17 +1,14 @@
 #pragma data_seg(".udtimes_Fade")
 static const float udtimes_Fade[] = {
 	0.0,
-	4.0,
+	3.966666666666667,
 	0.033333333333333215,
-	0.43333333333333357,
+	0.4666666666666668,
 	0.5333333333333332,
 	3.0,
-	23.433333333333334,
-	0.03333333333333144,
-	1.533333333333335,
-	102.69999999999999,
-	10.300000000000011,
-	325.0,
+	127.69999999999999,
+	17.26666666666668,
+	318.0333333333333,
 	9.0,
 };
 
@@ -19,13 +16,10 @@ static const float udtimes_Fade[] = {
 static const float udvalues_Fade[] = {
 	0,
 	0.3,
-	0.3,
-	-0.13,
+	0.3118975360576924,
+	-0.1418975360576924,
 	0.05615384615384622,
 	0.4738461538461538,
-	0,
-	-0.77,
-	0.77,
 	0,
 	-1,
 	1,
@@ -64,9 +58,13 @@ static const float udtimes_zoomshift[] = {
 	1.9666666666666668,
 	19.0,
 	0.03333333333333499,
-	2.3999999999999986,
+	2.099999999999998,
+	0.03333333333333499,
+	36.83333333333333,
 	0.03333333333333144,
-	64.53333333333333,
+	0.5,
+	0.03333333333333144,
+	27.433333333333337,
 	0.03333333333333144,
 	0.9666666666666686,
 	15.0,
@@ -81,17 +79,6 @@ static const float udtimes_zoomshift[] = {
 	0.5333333333333314,
 	0.3333333333333428,
 	1.0999999999999943,
-	3.23333333333332,
-	0.03333333333335986,
-	0.9333333333333087,
-	7.600000000000023,
-	0.03333333333333144,
-	0.46666666666666856,
-	0.03333333333333144,
-	0.9333333333333371,
-	1.4666666666666401,
-	0.03333333333335986,
-	0.9333333333333087,
 };
 
 #pragma data_seg(".udvalues_zoomshift")
@@ -102,8 +89,12 @@ static const float udvalues_zoomshift[] = {
 	0.09999999999999964,
 	0.0,
 	-0.19999999999999973,
-	-0.30000000000000027,
-	0.5,
+	0.0,
+	0.19999999999999973,
+	0.0,
+	0.20000000000000018,
+	0.0,
+	-0.20000000000000018,
 	0.0,
 	4.498,
 	-0.05153846153846153,
@@ -119,17 +110,6 @@ static const float udvalues_zoomshift[] = {
 	0.3500000000000001,
 	-0.050000000000000266,
 	0.10000000000000009,
-	0.0,
-	-0.3999999999999999,
-	0.3999999999999999,
-	0.0,
-	-0.3999999999999999,
-	0.3999999999999999,
-	-0.3999999999999999,
-	0.3999999999999999,
-	0.0,
-	-0.3999999999999999,
-	0.3999999999999999,
 };
 
 #pragma data_seg(".udtimes_steps")
@@ -139,11 +119,15 @@ static const float udtimes_steps[] = {
 	0.03333333333333499,
 	3.966666666666665,
 	0.03333333333333499,
-	8.966666666666665,
-	0.03333333333333499,
-	2.3999999999999986,
+	47.96666666666667,
 	0.03333333333333144,
-	64.53333333333333,
+	0.5,
+	0.03333333333333144,
+	2.799999999999997,
+	0.03333333333334565,
+	0.6333333333333258,
+	0.03333333333333144,
+	23.933333333333337,
 	0.03333333333333144,
 	23.96666666666667,
 	0.03333333333333144,
@@ -157,9 +141,13 @@ static const float udvalues_steps[] = {
 	0.0,
 	-1.0,
 	0.0,
+	-1.0,
+	0.0,
 	1.0,
 	0.0,
 	-1.0,
+	0.0,
+	1.0,
 	0.0,
 	-2.0,
 	0,
@@ -168,14 +156,10 @@ static const float udvalues_steps[] = {
 
 #pragma data_seg(".udtimes_greyscale")
 static const float udtimes_greyscale[] = {
-	0.0,
-	4.0,
-	0.033333333333333215,
-	91.96666666666667,
+	0,
+	96.0,
 	0.03333333333333144,
-	8.366666666666674,
-	4.3999999999999915,
-	0.20000000000000284,
+	12.966666666666669,
 	2.9666666666666686,
 	0.06666666666666288,
 	5.966666666666669,
@@ -184,18 +168,15 @@ static const float udtimes_greyscale[] = {
 	4.966666666666669,
 	0.03333333333333144,
 	17.26666666666668,
-	2.6999999999999886,
+	6.599999999999994,
+	4.066666666666663,
 };
 
 #pragma data_seg(".udvalues_greyscale")
 static const float udvalues_greyscale[] = {
 	0,
-	0.1,
-	-0.1,
 	0,
 	1,
-	0,
-	0,
 	0,
 	-0.09999999999999998,
 	0.09999999999999998,
@@ -205,15 +186,14 @@ static const float udvalues_greyscale[] = {
 	-0.2,
 	-0.3,
 	0,
-	1,
+	0.433125,
+	0.266875,
 };
 
 #pragma data_seg(".udtimes_greyscale2")
 static const float udtimes_greyscale2[] = {
-	0.0,
-	4.0,
-	0.033333333333333215,
-	99.96666666666667,
+	0,
+	104.0,
 	0.03333333333333144,
 	0.7000000000000028,
 	3.2666666666666657,
@@ -227,8 +207,6 @@ static const float udtimes_greyscale2[] = {
 #pragma data_seg(".udvalues_greyscale2")
 static const float udvalues_greyscale2[] = {
 	0,
-	0.2,
-	-0.2,
 	0,
 	0.8501577287066246,
 	-0.41955835962145116,
@@ -250,10 +228,10 @@ static const float udtimes_timeshift[] = {
 	3.966666666666665,
 	0.03333333333333499,
 	3.966666666666665,
-	0.7333333333333343,
-	55.266666666666666,
+	1.0,
+	55.03333333333333,
 	0.03333333333333144,
-	7.966666666666669,
+	7.933333333333337,
 	0.03333333333333144,
 	7.966666666666669,
 	0.03333333333333144,
@@ -281,9 +259,7 @@ static const float udvalues_timeshift[] = {
 #pragma data_seg(".udtimes_shiftX")
 static const float udtimes_shiftX[] = {
 	0,
-	4.0,
-	0.033333333333333215,
-	3.966666666666667,
+	8.0,
 	0.033333333333333215,
 	3.966666666666667,
 	0.033333333333333215,
@@ -292,9 +268,9 @@ static const float udtimes_shiftX[] = {
 	0.03333333333333499,
 	3.966666666666665,
 	0.03333333333333499,
-	59.96666666666667,
+	60.0,
 	0.03333333333333144,
-	7.966666666666669,
+	7.933333333333337,
 	0.03333333333333144,
 	7.966666666666669,
 	0.03333333333333144,
@@ -302,8 +278,6 @@ static const float udtimes_shiftX[] = {
 
 #pragma data_seg(".udvalues_shiftX")
 static const float udvalues_shiftX[] = {
-	0.0,
-	0.0,
 	-0.5,
 	0.0,
 	0.43800000000000017,
@@ -324,10 +298,8 @@ static const float udvalues_shiftX[] = {
 
 #pragma data_seg(".udtimes_shiftY")
 static const float udtimes_shiftY[] = {
-	0.0,
-	4.0,
-	0.033333333333333215,
-	3.966666666666667,
+	0,
+	8.0,
 	0.033333333333333215,
 	3.966666666666667,
 	0.033333333333333215,
@@ -335,17 +307,15 @@ static const float udtimes_shiftY[] = {
 	0.03333333333333499,
 	3.966666666666665,
 	0.03333333333333499,
-	59.96666666666667,
+	60.0,
 	0.03333333333333144,
-	7.966666666666669,
+	7.933333333333337,
 	0.03333333333333144,
 };
 
 #pragma data_seg(".udvalues_shiftY")
 static const float udvalues_shiftY[] = {
-	0.03000000000000025,
-	-0.15500000000000025,
-	-0.375,
+	-0.5,
 	0.0,
 	-0.2999999999999998,
 	0.0,
@@ -363,9 +333,7 @@ static const float udvalues_shiftY[] = {
 #pragma data_seg(".udtimes_zoomXY")
 static const float udtimes_zoomXY[] = {
 	0,
-	4.0,
-	0.033333333333333215,
-	3.966666666666667,
+	8.0,
 	0.033333333333333215,
 	3.966666666666667,
 	0.033333333333333215,
@@ -378,22 +346,21 @@ static const float udtimes_zoomXY[] = {
 	0.03333333333333499,
 	6.966666666666665,
 	3.0,
-	46.0,
+	46.03333333333333,
 	0.03333333333333144,
-	7.966666666666669,
+	7.933333333333337,
 	0.03333333333333144,
 	7.966666666666669,
 	0.03333333333333144,
 	23.96666666666667,
 	0.03333333333333144,
-	26.96666666666667,
+	24.96666666666667,
+	7.966666666666669,
 };
 
 #pragma data_seg(".udvalues_zoomXY")
 static const float udvalues_zoomXY[] = {
-	1.6,
-	0.0,
-	-0.20000000000000018,
+	1.4,
 	0.0,
 	-0.3599999999999999,
 	0.0,
@@ -415,48 +382,56 @@ static const float udvalues_zoomXY[] = {
 	0.25,
 	0.0,
 	0.25,
-	0.6000000000000001,
+	0.5500000000000003,
+	-0.26000000000000023,
 };
 
 #pragma data_seg(".udtimes_red")
 static const float udtimes_red[] = {
 	0,
 	29.0,
+	2.133333333333333,
 	0.03333333333333499,
-	2.3999999999999986,
+	2.8666666666666636,
+	0.033333333333338544,
+	0.09999999999999432,
+	0.13333333333333286,
+	0.7000000000000028,
+	3.0,
+	30.0,
 	0.03333333333333144,
-	6.533333333333335,
-	42.0,
+	0.5333333333333314,
 	0.03333333333333144,
-	9.966666666666669,
+	0.9000000000000057,
+	10.533333333333331,
+	0.03333333333333144,
+	9.933333333333337,
 	0.03333333333333144,
 	0.23333333333333428,
 	1.7333333333333343,
 	33.0,
 	0.03333333333333144,
 	1.9666666666666686,
-	3.23333333333332,
-	0.03333333333335986,
-	1.9666666666666401,
-	6.566666666666691,
-	0.03333333333333144,
-	0.46666666666666856,
-	0.03333333333333144,
-	2.166666666666657,
-	0.23333333333332007,
-	0.03333333333335986,
-	1.9666666666666401,
 };
 
 #pragma data_seg(".udvalues_red")
 static const float udvalues_red[] = {
-	-0.003076923076922977,
-	0.0,
-	0.203076923076923,
-	0.8,
-	-1,
+	0,
 	0,
 	1,
+	-1,
+	0,
+	0.4,
+	0.0,
+	-0.2,
+	-0.2,
+	0,
+	0.714,
+	-0.45399999999999996,
+	0.33999999999999997,
+	-0.25999999999999995,
+	0.41,
+	0.25,
 	-1,
 	0,
 	0.25,
@@ -465,67 +440,82 @@ static const float udvalues_red[] = {
 	0,
 	0.6184615384615384,
 	-0.6184615384615384,
-	0,
-	1,
-	-1,
-	0,
-	1,
-	-0.5,
-	0.5,
-	-1,
-	0,
-	1,
-	-1,
 };
 
 #pragma data_seg(".udtimes_skip")
 static const float udtimes_skip[] = {
 	0,
 	28.0,
-	0.5,
 	0.03333333333333499,
 	0.466666666666665,
 	0.03333333333333499,
+	0.5,
+	0.03333333333333144,
+	42.33333333333334,
+	0.5999999999999943,
+	0.03333333333333144,
 };
 
 #pragma data_seg(".udvalues_skip")
 static const float udvalues_skip[] = {
 	15,
 	0,
-	-6.0,
+	-3.4000000000000004,
+	-2.5999999999999996,
 	-5.0,
 	-4.0,
+	15,
+	0,
+	-15,
 	15,
 };
 
 #pragma data_seg(".udtimes_distort")
 static const float udtimes_distort[] = {
 	0,
-	24.466666666666665,
-	3.533333333333335,
-	0.03333333333333499,
+	52.0,
+	0.03333333333333144,
+	0.3999999999999986,
+	0.033333333333338544,
+	0.5,
+	0.3999999999999986,
+	14.633333333333333,
+	0.03333333333333144,
+	0.5333333333333314,
+	0.03333333333333144,
+	1.2000000000000028,
+	1.2000000000000028,
+	0.03333333333333144,
+	0.3333333333333286,
+	0.03333333333334565,
+	0.5999999999999943,
+	0.03333333333333144,
+	0.06666666666666288,
+	0.4333333333333371,
 };
 
 #pragma data_seg(".udvalues_distort")
 static const float udvalues_distort[] = {
 	0,
 	0,
+	0.35,
+	-0.24999999999999997,
+	0.1,
+	-0.15000000000000002,
+	-0.05,
+	0,
+	0.25,
+	-0.15,
+	0.1,
+	-0.2,
+	0,
 	0.3,
-	-0.3,
-};
-
-#pragma data_seg(".udtimes_scene")
-static const float udtimes_scene[] = {
-	0,
-	4.0,
-	0.033333333333333215,
-};
-
-#pragma data_seg(".udvalues_scene")
-static const float udvalues_scene[] = {
-	2,
-	0,
-	-2,
+	-0.19999999999999998,
+	0.19999999999999998,
+	0.7,
+	-0.09105282738095233,
+	-0.7089471726190477,
+	-0.19999999999999996,
 };
 
 #pragma code_seg(".setUniform")
@@ -548,18 +538,17 @@ static void setUniform(GLuint prog, const char *name, float t, const float *dtim
     oglUniform1f(oglGetUniformLocation(prog, name), pv);
 }
 static __forceinline void setUniforms(GLuint prog, float t) {
-	setUniform(prog, VAR_FADE, t, udtimes_Fade, udvalues_Fade, 13);
+	setUniform(prog, VAR_FADE, t, udtimes_Fade, udvalues_Fade, 10);
 	setUniform(prog, VAR_SHIFT11, t, udtimes_shift11, udvalues_shift11, 8);
-	setUniform(prog, VAR_ZOOMSHIFT, t, udtimes_zoomshift, udvalues_zoomshift, 34);
-	setUniform(prog, VAR_STEPS, t, udtimes_steps, udvalues_steps, 13);
-	setUniform(prog, VAR_GREYSCALE, t, udtimes_greyscale, udvalues_greyscale, 17);
-	setUniform(prog, VAR_GREYSCALE2, t, udtimes_greyscale2, udvalues_greyscale2, 12);
+	setUniform(prog, VAR_ZOOMSHIFT, t, udtimes_zoomshift, udvalues_zoomshift, 27);
+	setUniform(prog, VAR_STEPS, t, udtimes_steps, udvalues_steps, 17);
+	setUniform(prog, VAR_GREYSCALE, t, udtimes_greyscale, udvalues_greyscale, 14);
+	setUniform(prog, VAR_GREYSCALE2, t, udtimes_greyscale2, udvalues_greyscale2, 10);
 	setUniform(prog, VAR_TIMESHIFT, t, udtimes_timeshift, udvalues_timeshift, 15);
-	setUniform(prog, VAR_SHIFTX, t, udtimes_shiftX, udvalues_shiftX, 18);
-	setUniform(prog, VAR_SHIFTY, t, udtimes_shiftY, udvalues_shiftY, 15);
-	setUniform(prog, VAR_ZOOMXY, t, udtimes_zoomXY, udvalues_zoomXY, 25);
-	setUniform(prog, VAR_RED, t, udtimes_red, udvalues_red, 26);
-	setUniform(prog, VAR_SKIP, t, udtimes_skip, udvalues_skip, 6);
-	setUniform(prog, VAR_DISTORT, t, udtimes_distort, udvalues_distort, 4);
-	setUniform(prog, VAR_SCENE, t, udtimes_scene, udvalues_scene, 3);
+	setUniform(prog, VAR_SHIFTX, t, udtimes_shiftX, udvalues_shiftX, 16);
+	setUniform(prog, VAR_SHIFTY, t, udtimes_shiftY, udvalues_shiftY, 13);
+	setUniform(prog, VAR_ZOOMXY, t, udtimes_zoomXY, udvalues_zoomXY, 24);
+	setUniform(prog, VAR_RED, t, udtimes_red, udvalues_red, 24);
+	setUniform(prog, VAR_SKIP, t, udtimes_skip, udvalues_skip, 10);
+	setUniform(prog, VAR_DISTORT, t, udtimes_distort, udvalues_distort, 20);
 }
