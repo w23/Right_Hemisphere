@@ -222,20 +222,20 @@ elif out_format == 'glsl':
         count = len(u.times.values)
         tl += '\t{{\n\t\tfloat T=t,v=0.,dtt[{0}],dvt[{0}];'.format(count)
         #tl += '/*\t{{\n\t\tfloat T=t,v=0.,dtt[{0}]=float[]('.format(count)
-        tl += '/*\t{{\n\t\t"float g=s,o=0.,u[{0}]=float[]('.format(count)
+        tl += '\n#\'float b=x,l=0.,a[{0}]=float[]('.format(count)
         sep = ''
         for v in u.times.values:
             tl += '{}{:.3f}'.format(sep, v)
             sep = ','
 
         #tl += '),dvt[{0}]=float[]('.format(count)
-        tl += '),h[{0}]=float[]('.format(count)
+        tl += '),e[{0}]=float[]('.format(count)
         sep = ''
         for v in u.values.values:
             tl += '{}{:.3f}'.format(sep, v)
             sep = ','
 
-        tl += ''');"*/
+        tl += ''');'\n
         for (int i = 0; i < {1}; ++i) {{
             //float dt = dt{0}[i], dv = dv{0}[i];
             if (T < dtt[i]) {{

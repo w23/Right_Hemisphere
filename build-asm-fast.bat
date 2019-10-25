@@ -12,9 +12,9 @@ set OPTS= ^
 	/TINYIMPORT ^
 	/TINYHEADER
 
-python introgen.py --automation glsl shader.txt
+REM python introgen.py --automation glsl shader.txt
 
-shader_minifier.exe --format nasm -o shader.glsl.inc shader.glsl
+REM shader_minifier.exe --format nasm -o shader.glsl.inc shader.glsl
 
 nasmw.exe -fwin32 -o 4klang.obj 4klang.asm
 nasmw.exe -fwin32 -o intro.obj intro.asm
