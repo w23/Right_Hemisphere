@@ -183,11 +183,13 @@ section _shdrptr data align=1
 src_main:
 	dd _shader_glsl
 
+%ifndef _var_T
 section _strings data align=1
 %ifdef DEBUG
 static: db "static", 0
 %endif
 t: db 't', 0
+%endif
 
 section _text text align=1
 _entrypoint:
@@ -261,7 +263,7 @@ _entrypoint:
 	push ebx
 	fild dword [esp]
 	%if 1 ;smaller?!
-	push SAMPLES_PER_TICK * 8 * 4
+	push SAMPLE_RATE * 8;SAMPLES_PER_TICK * 8 * 4
 	fild dword [esp]
 	fdivp
 	pop ebx
@@ -283,7 +285,7 @@ _entrypoint:
 	call wglGetProcAddress
 	call eax
 %endmacro
-	CALL_GLUNIFORM1F_ST0 t
+	CALL_GLUNIFORM1F_ST0 _var_T
 
 	call glRects
 
