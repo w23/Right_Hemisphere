@@ -202,8 +202,9 @@ end:
 '''
 elif out_format == 'glsl':
     head = None
-    tl = '\tfloat T, v;\n'
-    tl += '#define Q(a,b) if(T<a){v+=T*b/a;break;}T-=a;v+=b\n'
+    tl = ''
+    #tl = '\tfloat T, v;\n'
+    #tl += '#define Q(a,b) if(T<a){v+=T*b/a;break;}T-=a;v+=b\n'
     #tl += '#define Q(a,b) if(T<=a)v+=t*b/a;T-=a;v+=b\n'
     for u in uniforms:
         if not head:
@@ -212,17 +213,18 @@ elif out_format == 'glsl':
             head += ', ' + u.name
 
         #tl += '\tT=t;{}=0.;\n\t'.format(u.name)
-        tl += '\tT=t;v=0.;\n\tfor(int i=0;i<1;++i){\n'#.format(u.name)
+        tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
         count = len(u.times.values)
         for i in range(count):
-            #dt = '{:.3f}'.format(u.times.values[i])
-            #dv = '{:.3f}'.format(u.values.values[i])
+            dt = '{:.3f}'.format(u.times.values[i])
+            dv = '{:.3f}'.format(u.values.values[i])
             #tl += '\tif(T<={0})v+=T*{1}/{0};else{{T-={0};v+={1};\n'.format(dt, dv)
-            tl += '\t\tQ({:.3f}, {:.3f});\n'.format(u.times.values[i], u.values.values[i])
-        tl += '\t}'# * count
-        tl += '\n\t{} = v;\n'.format(u.name)
+            tl += '\t\tdt={};dv={};if(T<dt){{v+=T*dv/dt;break;}}T-=dt;v+=dv;\n'.format(dt, dv)
+            #tl += '\t\tQ({:.3f}, {:.3f});\n'.format(u.times.values[i], u.values.values[i])
+        tl += '\t\t{} = v;\n\t}}'.format(u.name)
 
     #shader = re.sub('uniform([\n.])*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
+    shader = head + ';\n' + shader
     shader = shader.replace('void main() {', 'void main() {\n' + tl)
 
 print('Writing shader into {}...'.format(args.shader.name))

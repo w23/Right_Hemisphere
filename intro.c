@@ -112,7 +112,7 @@ static GLubyte backbufferData[WIDTH*HEIGHT * 3];
 #pragma data_seg(".shader.glsl")
 #include "shader.glsl.h"
 
-#include "automation.c"
+//#include "automation.c"
 
 #ifndef NO_AUDIO
 #include "4klang.h"
@@ -318,8 +318,8 @@ static __forceinline void introInit() {
 #pragma code_seg(".introPaint")
 static __forceinline void introPaint(float t) {
 	GLCHECK();
-	setUniforms(program, t);
-	oglUniform1f(oglGetUniformLocation(program, "t"), t);
+	//setUniforms(program, t);
+	oglUniform1f(oglGetUniformLocation(program, VAR_T), t);//"t"), t);
 	//oglUniform2f(oglGetUniformLocation(program, "R_"), WIDTH, HEIGHT);
 	GLCHECK();
 	glRects(-1, -1, 1, 1);

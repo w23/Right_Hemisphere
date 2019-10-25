@@ -59,10 +59,10 @@ $(OBJDIR_WIN32)/%.asm.obj: %.asm
 	nasm -fwin32 -i4klang_win32/ $< -o $@
 
 %.glsl.inc: %.glsl
-	$(SHMIN) -o $@ --format nasm --preserve-externals $<
+	$(SHMIN) -o $@ --format nasm $<
 
 %.glsl.h: %.glsl
-	$(SHMIN) -o $@ --preserve-externals $<
+	$(SHMIN) -o $@ $<
 
 capture: $(INTRO)_$(WIDTH)_$(HEIGHT).mp4
 test-capture: test_$(INTRO)_$(WIDTH)_$(HEIGHT).mp4
