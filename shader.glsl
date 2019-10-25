@@ -44,254 +44,592 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 
 
 void main() {
-	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.300;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.312;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.467;dv=-0.142;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.533;dv=0.056;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.000;dv=0.474;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=127.700;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=17.267;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=318.033;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=9.000;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		Fade = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=300.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=9.000;dv=-71.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=34.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=11.967;dv=-20.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-109.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=5.967;dv=-47.231;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=90.000;dv=78.462;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		shift11 = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=2.800;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=8.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.967;dv=0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=19.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=2.100;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=36.833;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.500;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=27.433;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=4.498;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.967;dv=-0.052;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=15.000;dv=-4.246;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.300;dv=2.791;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.200;dv=-0.245;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.167;dv=0.125;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.200;dv=-0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.133;dv=0.025;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.000;dv=-1.595;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=5.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.400;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.533;dv=0.350;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.333;dv=-0.050;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.100;dv=0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		zoomshift = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=3.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=16.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=47.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.500;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=2.800;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.633;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=23.933;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-2.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=23.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		steps = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=96.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=12.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=2.967;dv=-0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.067;dv=0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=5.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=2.000;dv=-0.140;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.360;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=4.967;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.300;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=17.267;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=6.600;dv=0.433;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=4.067;dv=0.267;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		greyscale = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=104.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.850;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.700;dv=-0.420;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.267;dv=-0.202;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=4.000;dv=-0.019;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.233;dv=0.199;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.100;dv=0.591;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.367;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=4.300;dv=-0.500;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		greyscale2 = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=86.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=12.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=78.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-375.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=-10.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=385.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.000;dv=-158.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=55.033;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=150.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.933;dv=-6.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-28.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.967;dv=-4.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-112.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		timeshift = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=-0.500;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=8.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.438;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.308;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.933;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.610;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.480;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=60.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.700;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.933;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.450;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.050;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		shiftX = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=-0.500;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=8.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.300;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.300;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.780;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.780;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=60.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.933;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		shiftY = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=1.400;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=8.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.360;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.160;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.000;dv=-0.082;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.638;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=0.020;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.360;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.967;dv=-0.010;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.350;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=6.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=46.033;dv=1.180;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-1.680;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.933;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.600;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.967;dv=-0.150;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.250;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=23.967;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.250;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=24.967;dv=0.550;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=7.967;dv=-0.260;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		zoomXY = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=29.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=2.133;dv=1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=2.867;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.400;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.100;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.133;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.700;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=3.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=30.000;dv=0.714;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.454;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.533;dv=0.340;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.260;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.900;dv=0.410;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=10.533;dv=0.250;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-1.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=9.933;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.250;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.233;dv=-0.020;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.733;dv=-0.230;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=33.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.618;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.967;dv=-0.618;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		red = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=15.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=28.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-3.400;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.467;dv=-2.600;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-5.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.500;dv=-4.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=15.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=42.333;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.600;dv=-15.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=15.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		skip = v;
-	}	for(int i=0;i<1;++i){
-	float T=t,v=0.,dt,dv;
-		dt=0.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=52.000;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.350;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.400;dv=-0.250;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.500;dv=-0.150;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.400;dv=-0.050;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=14.633;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.250;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.533;dv=-0.150;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.100;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.200;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=1.200;dv=0.000;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.300;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.333;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.600;dv=0.700;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.033;dv=-0.091;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.067;dv=-0.709;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		dt=0.433;dv=-0.200;if(T<dt){v+=T*dv/dt;break;}T-=dt;v+=dv;
-		distort = v;
-	}
+	{		float dtt[10], dvt[10];
+		dtt[0] = 0.0000000;
+		dtt[1] = 3.9666667;
+		dtt[2] = 0.0333333;
+		dtt[3] = 0.4666667;
+		dtt[4] = 0.5333333;
+		dtt[5] = 3.0000000;
+		dtt[6] = 127.7000000;
+		dtt[7] = 17.2666667;
+		dtt[8] = 318.0333333;
+		dtt[9] = 9.0000000;
+		dvt[0] = 0.0000000;
+		dvt[1] = 0.3000000;
+		dvt[2] = 0.3118975;
+		dvt[3] = -0.1418975;
+		dvt[4] = 0.0561538;
+		dvt[5] = 0.4738462;
+		dvt[6] = 0.0000000;
+		dvt[7] = -1.0000000;
+		dvt[8] = 1.0000000;
+		dvt[9] = -1.0000000;
+
+        float T = t; Fade = 0.;
+        for (int i = 0; i < 10; ++i) {
+            //float dt = dtFade[i], dv = dvFade[i];
+            if (dtt[i] >= T) {
+                Fade += T * dvt[i] / dtt[i];
+                break;
+            }
+            Fade += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[8], dvt[8];
+		dtt[0] = 0.0000000;
+		dtt[1] = 3.0000000;
+		dtt[2] = 9.0000000;
+		dtt[3] = 0.0333333;
+		dtt[4] = 11.9666667;
+		dtt[5] = 0.0333333;
+		dtt[6] = 5.9666667;
+		dtt[7] = 90.0000000;
+		dvt[0] = 300.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = -71.1000000;
+		dvt[3] = 34.1000000;
+		dvt[4] = -20.0000000;
+		dvt[5] = -109.0000000;
+		dvt[6] = -47.2307692;
+		dvt[7] = 78.4615385;
+
+        float T = t; shift11 = 0.;
+        for (int i = 0; i < 8; ++i) {
+            //float dt = dtshift11[i], dv = dvshift11[i];
+            if (dtt[i] >= T) {
+                shift11 += T * dvt[i] / dtt[i];
+                break;
+            }
+            shift11 += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[27], dvt[27];
+		dtt[0] = 0.0000000;
+		dtt[1] = 8.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 1.9666667;
+		dtt[4] = 19.0000000;
+		dtt[5] = 0.0333333;
+		dtt[6] = 2.1000000;
+		dtt[7] = 0.0333333;
+		dtt[8] = 36.8333333;
+		dtt[9] = 0.0333333;
+		dtt[10] = 0.5000000;
+		dtt[11] = 0.0333333;
+		dtt[12] = 27.4333333;
+		dtt[13] = 0.0333333;
+		dtt[14] = 0.9666667;
+		dtt[15] = 15.0000000;
+		dtt[16] = 0.3000000;
+		dtt[17] = 0.2000000;
+		dtt[18] = 0.1666667;
+		dtt[19] = 0.2000000;
+		dtt[20] = 0.1333333;
+		dtt[21] = 7.0000000;
+		dtt[22] = 5.0000000;
+		dtt[23] = 0.0333333;
+		dtt[24] = 0.5333333;
+		dtt[25] = 0.3333333;
+		dtt[26] = 1.1000000;
+		dvt[0] = 2.8000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = -0.1000000;
+		dvt[3] = 0.1000000;
+		dvt[4] = 0.0000000;
+		dvt[5] = -0.2000000;
+		dvt[6] = 0.0000000;
+		dvt[7] = 0.2000000;
+		dvt[8] = 0.0000000;
+		dvt[9] = 0.2000000;
+		dvt[10] = 0.0000000;
+		dvt[11] = -0.2000000;
+		dvt[12] = 0.0000000;
+		dvt[13] = 4.4980000;
+		dvt[14] = -0.0515385;
+		dvt[15] = -4.2464615;
+		dvt[16] = 2.7905856;
+		dvt[17] = -0.2453174;
+		dvt[18] = 0.1246057;
+		dvt[19] = -0.0996845;
+		dvt[20] = 0.0249211;
+		dvt[21] = -1.5951104;
+		dvt[22] = 0.0000000;
+		dvt[23] = -0.4000000;
+		dvt[24] = 0.3500000;
+		dvt[25] = -0.0500000;
+		dvt[26] = 0.1000000;
+
+        float T = t; zoomshift = 0.;
+        for (int i = 0; i < 27; ++i) {
+            //float dt = dtzoomshift[i], dv = dvzoomshift[i];
+            if (dtt[i] >= T) {
+                zoomshift += T * dvt[i] / dtt[i];
+                break;
+            }
+            zoomshift += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[17], dvt[17];
+		dtt[0] = 0.0000000;
+		dtt[1] = 16.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 3.9666667;
+		dtt[4] = 0.0333333;
+		dtt[5] = 47.9666667;
+		dtt[6] = 0.0333333;
+		dtt[7] = 0.5000000;
+		dtt[8] = 0.0333333;
+		dtt[9] = 2.8000000;
+		dtt[10] = 0.0333333;
+		dtt[11] = 0.6333333;
+		dtt[12] = 0.0333333;
+		dtt[13] = 23.9333333;
+		dtt[14] = 0.0333333;
+		dtt[15] = 23.9666667;
+		dtt[16] = 0.0333333;
+		dvt[0] = 3.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 1.0000000;
+		dvt[3] = 0.0000000;
+		dvt[4] = -1.0000000;
+		dvt[5] = 0.0000000;
+		dvt[6] = -1.0000000;
+		dvt[7] = 0.0000000;
+		dvt[8] = 1.0000000;
+		dvt[9] = 0.0000000;
+		dvt[10] = -1.0000000;
+		dvt[11] = 0.0000000;
+		dvt[12] = 1.0000000;
+		dvt[13] = 0.0000000;
+		dvt[14] = -2.0000000;
+		dvt[15] = 0.0000000;
+		dvt[16] = 1.0000000;
+
+        float T = t; steps = 0.;
+        for (int i = 0; i < 17; ++i) {
+            //float dt = dtsteps[i], dv = dvsteps[i];
+            if (dtt[i] >= T) {
+                steps += T * dvt[i] / dtt[i];
+                break;
+            }
+            steps += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[14], dvt[14];
+		dtt[0] = 0.0000000;
+		dtt[1] = 96.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 12.9666667;
+		dtt[4] = 2.9666667;
+		dtt[5] = 0.0666667;
+		dtt[6] = 5.9666667;
+		dtt[7] = 2.0000000;
+		dtt[8] = 0.0333333;
+		dtt[9] = 4.9666667;
+		dtt[10] = 0.0333333;
+		dtt[11] = 17.2666667;
+		dtt[12] = 6.6000000;
+		dtt[13] = 4.0666667;
+		dvt[0] = 0.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 1.0000000;
+		dvt[3] = 0.0000000;
+		dvt[4] = -0.1000000;
+		dvt[5] = 0.1000000;
+		dvt[6] = 0.0000000;
+		dvt[7] = -0.1400000;
+		dvt[8] = -0.3600000;
+		dvt[9] = -0.2000000;
+		dvt[10] = -0.3000000;
+		dvt[11] = 0.0000000;
+		dvt[12] = 0.4331250;
+		dvt[13] = 0.2668750;
+
+        float T = t; greyscale = 0.;
+        for (int i = 0; i < 14; ++i) {
+            //float dt = dtgreyscale[i], dv = dvgreyscale[i];
+            if (dtt[i] >= T) {
+                greyscale += T * dvt[i] / dtt[i];
+                break;
+            }
+            greyscale += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[10], dvt[10];
+		dtt[0] = 0.0000000;
+		dtt[1] = 104.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 0.7000000;
+		dtt[4] = 3.2666667;
+		dtt[5] = 4.0000000;
+		dtt[6] = 0.2333333;
+		dtt[7] = 0.1000000;
+		dtt[8] = 3.3666667;
+		dtt[9] = 4.3000000;
+		dvt[0] = 0.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 0.8501577;
+		dvt[3] = -0.4195584;
+		dvt[4] = -0.2018927;
+		dvt[5] = -0.0189274;
+		dvt[6] = 0.1987382;
+		dvt[7] = 0.5914826;
+		dvt[8] = 0.0000000;
+		dvt[9] = -0.5000000;
+
+        float T = t; greyscale2 = 0.;
+        for (int i = 0; i < 10; ++i) {
+            //float dt = dtgreyscale2[i], dv = dvgreyscale2[i];
+            if (dtt[i] >= T) {
+                greyscale2 += T * dvt[i] / dtt[i];
+                break;
+            }
+            greyscale2 += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[15], dvt[15];
+		dtt[0] = 0.0000000;
+		dtt[1] = 12.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 3.9666667;
+		dtt[4] = 0.0333333;
+		dtt[5] = 3.9666667;
+		dtt[6] = 0.0333333;
+		dtt[7] = 3.9666667;
+		dtt[8] = 1.0000000;
+		dtt[9] = 55.0333333;
+		dtt[10] = 0.0333333;
+		dtt[11] = 7.9333333;
+		dtt[12] = 0.0333333;
+		dtt[13] = 7.9666667;
+		dtt[14] = 0.0333333;
+		dvt[0] = 86.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 78.0000000;
+		dvt[3] = 0.0000000;
+		dvt[4] = -375.0000000;
+		dvt[5] = -10.0000000;
+		dvt[6] = 385.0000000;
+		dvt[7] = 0.0000000;
+		dvt[8] = -158.0000000;
+		dvt[9] = 0.0000000;
+		dvt[10] = 150.0000000;
+		dvt[11] = -6.0000000;
+		dvt[12] = -28.0000000;
+		dvt[13] = -4.0000000;
+		dvt[14] = -112.0000000;
+
+        float T = t; timeshift = 0.;
+        for (int i = 0; i < 15; ++i) {
+            //float dt = dttimeshift[i], dv = dvtimeshift[i];
+            if (dtt[i] >= T) {
+                timeshift += T * dvt[i] / dtt[i];
+                break;
+            }
+            timeshift += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[16], dvt[16];
+		dtt[0] = 0.0000000;
+		dtt[1] = 8.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 3.9666667;
+		dtt[4] = 0.0333333;
+		dtt[5] = 3.9333333;
+		dtt[6] = 0.0333333;
+		dtt[7] = 0.0333333;
+		dtt[8] = 3.9666667;
+		dtt[9] = 0.0333333;
+		dtt[10] = 60.0000000;
+		dtt[11] = 0.0333333;
+		dtt[12] = 7.9333333;
+		dtt[13] = 0.0333333;
+		dtt[14] = 7.9666667;
+		dtt[15] = 0.0333333;
+		dvt[0] = -0.5000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 0.4380000;
+		dvt[3] = 0.0000000;
+		dvt[4] = -0.3080000;
+		dvt[5] = 0.0000000;
+		dvt[6] = 0.0000000;
+		dvt[7] = -0.6100000;
+		dvt[8] = 0.0000000;
+		dvt[9] = 0.4800000;
+		dvt[10] = 0.0000000;
+		dvt[11] = 0.7000000;
+		dvt[12] = -0.2000000;
+		dvt[13] = -0.4500000;
+		dvt[14] = 0.0000000;
+		dvt[15] = -0.0500000;
+
+        float T = t; shiftX = 0.;
+        for (int i = 0; i < 16; ++i) {
+            //float dt = dtshiftX[i], dv = dvshiftX[i];
+            if (dtt[i] >= T) {
+                shiftX += T * dvt[i] / dtt[i];
+                break;
+            }
+            shiftX += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[13], dvt[13];
+		dtt[0] = 0.0000000;
+		dtt[1] = 8.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 3.9666667;
+		dtt[4] = 0.0333333;
+		dtt[5] = 3.9666667;
+		dtt[6] = 0.0333333;
+		dtt[7] = 3.9666667;
+		dtt[8] = 0.0333333;
+		dtt[9] = 60.0000000;
+		dtt[10] = 0.0333333;
+		dtt[11] = 7.9333333;
+		dtt[12] = 0.0333333;
+		dvt[0] = -0.5000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = -0.3000000;
+		dvt[3] = 0.0000000;
+		dvt[4] = 0.3000000;
+		dvt[5] = 0.0000000;
+		dvt[6] = 0.7800000;
+		dvt[7] = 0.0000000;
+		dvt[8] = -0.7800000;
+		dvt[9] = 0.0000000;
+		dvt[10] = 0.1000000;
+		dvt[11] = 0.0000000;
+		dvt[12] = -0.1000000;
+
+        float T = t; shiftY = 0.;
+        for (int i = 0; i < 13; ++i) {
+            //float dt = dtshiftY[i], dv = dvshiftY[i];
+            if (dtt[i] >= T) {
+                shiftY += T * dvt[i] / dtt[i];
+                break;
+            }
+            shiftY += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[24], dvt[24];
+		dtt[0] = 0.0000000;
+		dtt[1] = 8.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 3.9666667;
+		dtt[4] = 0.0333333;
+		dtt[5] = 0.9666667;
+		dtt[6] = 3.0000000;
+		dtt[7] = 0.0333333;
+		dtt[8] = 3.9666667;
+		dtt[9] = 0.0333333;
+		dtt[10] = 3.9666667;
+		dtt[11] = 0.0333333;
+		dtt[12] = 6.9666667;
+		dtt[13] = 3.0000000;
+		dtt[14] = 46.0333333;
+		dtt[15] = 0.0333333;
+		dtt[16] = 7.9333333;
+		dtt[17] = 0.0333333;
+		dtt[18] = 7.9666667;
+		dtt[19] = 0.0333333;
+		dtt[20] = 23.9666667;
+		dtt[21] = 0.0333333;
+		dtt[22] = 24.9666667;
+		dtt[23] = 7.9666667;
+		dvt[0] = 1.4000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = -0.3600000;
+		dvt[3] = 0.0000000;
+		dvt[4] = 0.1600000;
+		dvt[5] = 0.0000000;
+		dvt[6] = -0.0818182;
+		dvt[7] = -0.6381818;
+		dvt[8] = 0.0200000;
+		dvt[9] = 0.3600000;
+		dvt[10] = -0.0100000;
+		dvt[11] = 0.3500000;
+		dvt[12] = 0.0000000;
+		dvt[13] = 0.0000000;
+		dvt[14] = 1.1800000;
+		dvt[15] = -1.6800000;
+		dvt[16] = 0.0000000;
+		dvt[17] = 0.6000000;
+		dvt[18] = -0.1500000;
+		dvt[19] = 0.2500000;
+		dvt[20] = 0.0000000;
+		dvt[21] = 0.2500000;
+		dvt[22] = 0.5500000;
+		dvt[23] = -0.2600000;
+
+        float T = t; zoomXY = 0.;
+        for (int i = 0; i < 24; ++i) {
+            //float dt = dtzoomXY[i], dv = dvzoomXY[i];
+            if (dtt[i] >= T) {
+                zoomXY += T * dvt[i] / dtt[i];
+                break;
+            }
+            zoomXY += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[24], dvt[24];
+		dtt[0] = 0.0000000;
+		dtt[1] = 29.0000000;
+		dtt[2] = 2.1333333;
+		dtt[3] = 0.0333333;
+		dtt[4] = 2.8666667;
+		dtt[5] = 0.0333333;
+		dtt[6] = 0.1000000;
+		dtt[7] = 0.1333333;
+		dtt[8] = 0.7000000;
+		dtt[9] = 3.0000000;
+		dtt[10] = 30.0000000;
+		dtt[11] = 0.0333333;
+		dtt[12] = 0.5333333;
+		dtt[13] = 0.0333333;
+		dtt[14] = 0.9000000;
+		dtt[15] = 10.5333333;
+		dtt[16] = 0.0333333;
+		dtt[17] = 9.9333333;
+		dtt[18] = 0.0333333;
+		dtt[19] = 0.2333333;
+		dtt[20] = 1.7333333;
+		dtt[21] = 33.0000000;
+		dtt[22] = 0.0333333;
+		dtt[23] = 1.9666667;
+		dvt[0] = 0.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 1.0000000;
+		dvt[3] = -1.0000000;
+		dvt[4] = 0.0000000;
+		dvt[5] = 0.4000000;
+		dvt[6] = 0.0000000;
+		dvt[7] = -0.2000000;
+		dvt[8] = -0.2000000;
+		dvt[9] = 0.0000000;
+		dvt[10] = 0.7140000;
+		dvt[11] = -0.4540000;
+		dvt[12] = 0.3400000;
+		dvt[13] = -0.2600000;
+		dvt[14] = 0.4100000;
+		dvt[15] = 0.2500000;
+		dvt[16] = -1.0000000;
+		dvt[17] = 0.0000000;
+		dvt[18] = 0.2500000;
+		dvt[19] = -0.0200000;
+		dvt[20] = -0.2300000;
+		dvt[21] = 0.0000000;
+		dvt[22] = 0.6184615;
+		dvt[23] = -0.6184615;
+
+        float T = t; red = 0.;
+        for (int i = 0; i < 24; ++i) {
+            //float dt = dtred[i], dv = dvred[i];
+            if (dtt[i] >= T) {
+                red += T * dvt[i] / dtt[i];
+                break;
+            }
+            red += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[10], dvt[10];
+		dtt[0] = 0.0000000;
+		dtt[1] = 28.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 0.4666667;
+		dtt[4] = 0.0333333;
+		dtt[5] = 0.5000000;
+		dtt[6] = 0.0333333;
+		dtt[7] = 42.3333333;
+		dtt[8] = 0.6000000;
+		dtt[9] = 0.0333333;
+		dvt[0] = 15.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = -3.4000000;
+		dvt[3] = -2.6000000;
+		dvt[4] = -5.0000000;
+		dvt[5] = -4.0000000;
+		dvt[6] = 15.0000000;
+		dvt[7] = 0.0000000;
+		dvt[8] = -15.0000000;
+		dvt[9] = 15.0000000;
+
+        float T = t; skip = 0.;
+        for (int i = 0; i < 10; ++i) {
+            //float dt = dtskip[i], dv = dvskip[i];
+            if (dtt[i] >= T) {
+                skip += T * dvt[i] / dtt[i];
+                break;
+            }
+            skip += dvt[i];
+            T -= dtt[i];
+        }
+    }
+	{		float dtt[20], dvt[20];
+		dtt[0] = 0.0000000;
+		dtt[1] = 52.0000000;
+		dtt[2] = 0.0333333;
+		dtt[3] = 0.4000000;
+		dtt[4] = 0.0333333;
+		dtt[5] = 0.5000000;
+		dtt[6] = 0.4000000;
+		dtt[7] = 14.6333333;
+		dtt[8] = 0.0333333;
+		dtt[9] = 0.5333333;
+		dtt[10] = 0.0333333;
+		dtt[11] = 1.2000000;
+		dtt[12] = 1.2000000;
+		dtt[13] = 0.0333333;
+		dtt[14] = 0.3333333;
+		dtt[15] = 0.0333333;
+		dtt[16] = 0.6000000;
+		dtt[17] = 0.0333333;
+		dtt[18] = 0.0666667;
+		dtt[19] = 0.4333333;
+		dvt[0] = 0.0000000;
+		dvt[1] = 0.0000000;
+		dvt[2] = 0.3500000;
+		dvt[3] = -0.2500000;
+		dvt[4] = 0.1000000;
+		dvt[5] = -0.1500000;
+		dvt[6] = -0.0500000;
+		dvt[7] = 0.0000000;
+		dvt[8] = 0.2500000;
+		dvt[9] = -0.1500000;
+		dvt[10] = 0.1000000;
+		dvt[11] = -0.2000000;
+		dvt[12] = 0.0000000;
+		dvt[13] = 0.3000000;
+		dvt[14] = -0.2000000;
+		dvt[15] = 0.2000000;
+		dvt[16] = 0.7000000;
+		dvt[17] = -0.0910528;
+		dvt[18] = -0.7089472;
+		dvt[19] = -0.2000000;
+
+        float T = t; distort = 0.;
+        for (int i = 0; i < 20; ++i) {
+            //float dt = dtdistort[i], dv = dvdistort[i];
+            if (dtt[i] >= T) {
+                distort += T * dvt[i] / dtt[i];
+                break;
+            }
+            distort += dvt[i];
+            T -= dtt[i];
+        }
+    }
+
   
     zoom = zoomshift + smoothstep(120.,180.,t+timeshift)*.6 - smoothstep(240.,300.,t+timeshift);
     

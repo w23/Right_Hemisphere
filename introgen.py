@@ -213,15 +213,41 @@ elif out_format == 'glsl':
             head += ', ' + u.name
 
         #tl += '\tT=t;{}=0.;\n\t'.format(u.name)
-        tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
+        #tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
+
+        tl += '\t{'
+
         count = len(u.times.values)
-        for i in range(count):
-            dt = '{:.3f}'.format(u.times.values[i])
-            dv = '{:.3f}'.format(u.values.values[i])
-            #tl += '\tif(T<={0})v+=T*{1}/{0};else{{T-={0};v+={1};\n'.format(dt, dv)
-            tl += '\t\tdt={};dv={};if(T<dt){{v+=T*dv/dt;break;}}T-=dt;v+=dv;\n'.format(dt, dv)
-            #tl += '\t\tQ({:.3f}, {:.3f});\n'.format(u.times.values[i], u.values.values[i])
-        tl += '\t\t{} = v;\n\t}}'.format(u.name)
+        tl += '\t\tfloat dtt[{0}], dvt[{0}];\n'.format(count)
+        for i, v in enumerate(u.times.values):
+            tl += '\t\tdtt[{}] = {:.7f};\n'.format(i, v)
+
+        for i, v in enumerate(u.values.values):
+            tl += '\t\tdvt[{}] = {:.7f};\n'.format(i, v)
+
+        tl += '''
+        float T = t; {0} = 0.;
+        for (int i = 0; i < {1}; ++i) {{
+            //float dt = dt{0}[i], dv = dv{0}[i];
+            if (dtt[i] >= T) {{
+                {0} += T * dvt[i] / dtt[i];
+                break;
+            }}
+            {0} += dvt[i];
+            T -= dtt[i];
+        }}
+    }}
+'''.format(u.name, count)
+
+        '''
+                for i in range(count):
+                    dt = '{:.3f}'.format(u.times.values[i])
+                    dv = '{:.3f}'.format(u.values.values[i])
+                    #tl += '\tif(T<={0})v+=T*{1}/{0};else{{T-={0};v+={1};\n'.format(dt, dv)
+                    tl += '\t\tdt={};dv={};if(T<dt){{v+=T*dv/dt;break;}}T-=dt;v+=dv;\n'.format(dt, dv)
+                    #tl += '\t\tQ({:.3f}, {:.3f});\n'.format(u.times.values[i], u.values.values[i])
+                tl += '\t\t{} = v;\n\t}}'.format(u.name)
+        ''' and None
 
     #shader = re.sub('uniform([\n.])*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
     shader = head + ';\n' + shader
