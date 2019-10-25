@@ -220,19 +220,22 @@ elif out_format == 'glsl':
         #tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
 
         count = len(u.times.values)
-        tl += '\t{{\n\t\tfloat T=t,v=0.,dtt[{0}]=float[]{{'.format(count)
-        sep = '\n\t\t\t'
+        tl += '\t{{\n\t\tfloat T=t,v=0.,dtt[{0}],dvt[{0}];'.format(count)
+        #tl += '/*\t{{\n\t\tfloat T=t,v=0.,dtt[{0}]=float[]('.format(count)
+        tl += '/*\t{{\n\t\t"float g=s,o=0.,u[{0}]=float[]('.format(count)
+        sep = ''
         for v in u.times.values:
             tl += '{}{:.3f}'.format(sep, v)
-            sep = ',\n\t\t\t'
+            sep = ','
 
-        tl += '}},\n\t\t\tdvt[{0}]=float[]{{'.format(count)
-        sep = '\n\t\t\t'
+        #tl += '),dvt[{0}]=float[]('.format(count)
+        tl += '),h[{0}]=float[]('.format(count)
+        sep = ''
         for v in u.values.values:
             tl += '{}{:.3f}'.format(sep, v)
-            sep = ',\n\t\t\t'
+            sep = ','
 
-        tl += '''}};
+        tl += ''');"*/
         for (int i = 0; i < {1}; ++i) {{
             //float dt = dt{0}[i], dv = dv{0}[i];
             if (T < dtt[i]) {{
@@ -256,10 +259,10 @@ elif out_format == 'glsl':
                 tl += '\t\t{} = v;\n\t}}'.format(u.name)
         ''' and None
 
-    tl += '\t}\n'
+    #tl += '\t}\n'
 
     #shader = re.sub('uniform([\n.])*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
-    shader = head + ';\n' + shader
+    shader = '#version 120\n' + head + ';\n' + shader
     shader = shader.replace('void main() {', 'void main() {\n' + tl)
 
 print('Writing shader into {}...'.format(args.shader.name))
