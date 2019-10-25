@@ -4,7 +4,7 @@
 %endmacro
 %define USE_SECTIONS
 %define SAMPLE_RATE	44100
-%define MAX_INSTRUMENTS	14
+%define MAX_INSTRUMENTS	16
 %define MAX_VOICES 2
 %define HLD 1
 %define BPM 60.000000
@@ -430,37 +430,48 @@ go4k_patterns
 	db	73, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	68, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	49, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 0, 0, 0, 0, 
-	db	13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-	db	97, 97, 97, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	db	49, HLD, 0, 0, 49, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 0, 0, 0, 0, 
+	db	89, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
+	db	70, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
+	db	80, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
+	db	63, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
+	db	73, 0, 0, 0, 73, 0, 0, 0, 73, 0, 0, 0, 73, 0, 0, 0, 
+	db	96, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	db	25, 25, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	db	97, 97, 97, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 0, 0, 0, 0, 
 	db	109, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	36, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 60, HLD, HLD, HLD, 
 	db	1, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	1, HLD, HLD, HLD, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-	db	37, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	db	37, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	db	0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 
 	db	109, HLD, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	61, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
-	db	75, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
+	db	82, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	109, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
-	db	80, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	85, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
-	db	89, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	77, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
+	db	75, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	66, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
 	db	94, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 
-	db	0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 1, 0, 0, 0, 0, 0, 
-	db	0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 13, 0, 0, 0, 0, 0, 
-	db	0, 0, 0, 0, 0, 0, 0, 0, 32, 0, 37, 37, 0, 0, 0, 0, 
-	db	0, 0, 0, 0, 0, 0, 0, 0, 92, 0, 85, 0, 0, 0, 0, 0, 
+	db	0, 0, 0, 0, 0, 0, 0, 0, 8, 1, 0, 0, 0, 0, 0, 0, 
+	db	0, 0, 0, 0, 0, 0, 0, 0, 20, 13, 0, 0, 0, 0, 0, 0, 
+	db	0, 0, 0, 0, 0, 0, 0, 0, 32, 37, 37, 0, 0, 0, 0, 0, 
+	db	0, 0, 0, 0, 0, 0, 0, 0, 92, 85, 0, 0, 0, 0, 0, 0, 
+	db	85, 80, 89, 85, 85, 80, 89, 80, 85, 80, 89, 85, 85, 80, 89, 85, 
 	db	85, 80, 89, 85, 85, 80, 89, 85, 85, 80, 89, 85, 85, 80, 89, 85, 
 	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 
 	db	87, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+	db	13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	3, 0, 0, 0, 0, 0, 0, 0, 73, 0, 0, 0, 0, 0, 0, 0, 
 	db	51, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	73, 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 0, 0, 0, 0, 0, 
 	db	0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 
-	db	49, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 0, 
+	db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 37, 0, 
+	db	0, 0, 0, 0, 0, 0, 0, 0, 13, HLD, 0, 0, 0, 0, 0, 0, 
+	db	49, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, HLD, 0, 0, 
 go4k_patterns_end
 %ifdef USE_SECTIONS
 section .g4kmuc2 data align=1
@@ -472,16 +483,18 @@ Instrument0List		db	1, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 Instrument1List		db	0, 0, 3, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 Instrument2List		db	0, 0, 0, 0, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 Instrument3List		db	5, 2, 2, 2, 6, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-Instrument4List		db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2, 2, 2, 2, 2, 2, 2, 0, 3, 2, 2, 0, 7, 7, 7, 7, 7, 7, 7, 7, 0, 0, 0, 0, 0, 0, 0, 
-Instrument7List		db	0, 0, 0, 0, 0, 0, 8, 9, 0, 0, 0, 0, 0, 10, 0, 0, 0, 11, 0, 0, 12, 0, 13, 0, 14, 0, 0, 12, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 0, 
-Instrument8List		db	0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 5, 6, 17, 18, 19, 0, 20, 2, 2, 19, 2, 2, 3, 2, 2, 2, 21, 2, 5, 2, 2, 22, 2, 2, 0, 0, 0, 
-Instrument9List		db	17, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 20, 23, 5, 18, 24, 4, 23, 2, 2, 24, 2, 2, 4, 2, 2, 2, 23, 2, 22, 2, 25, 2, 2, 2, 0, 0, 0, 
-Instrument10List		db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 27, 0, 28, 0, 29, 0, 29, 0, 30, 30, 30, 30, 30, 30, 30, 30, 31, 0, 0, 0, 0, 0, 0, 
-Instrument11List		db	0, 32, 32, 32, 32, 0, 0, 0, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 34, 0, 35, 0, 32, 0, 32, 0, 32, 0, 32, 36, 37, 0, 0, 0, 0, 0, 0, 
-Instrument12List		db	0, 0, 0, 0, 0, 0, 5, 2, 2, 2, 2, 2, 2, 2, 0, 0, 17, 2, 2, 0, 38, 0, 0, 0, 5, 2, 12, 2, 2, 2, 2, 0, 12, 2, 2, 2, 0, 0, 0, 
-Instrument13List		db	0, 0, 0, 0, 0, 0, 17, 2, 2, 2, 2, 2, 2, 2, 0, 0, 4, 2, 2, 0, 0, 0, 0, 0, 23, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
-Instrument14List		db	0, 0, 0, 0, 0, 0, 23, 2, 2, 2, 2, 2, 2, 2, 0, 0, 6, 2, 2, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
-Instrument15List		db	0, 0, 0, 0, 0, 0, 20, 2, 2, 2, 2, 2, 2, 2, 0, 0, 20, 2, 2, 0, 0, 0, 0, 0, 20, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
+Instrument4List		db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2, 2, 2, 2, 2, 2, 2, 2, 0, 3, 2, 2, 0, 0, 7, 7, 7, 7, 7, 7, 8, 0, 0, 0, 0, 0, 0, 0, 
+Instrument5List		db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 2, 2, 0, 0, 0, 5, 2, 2, 5, 2, 2, 2, 2, 2, 0, 10, 2, 11, 2, 12, 2, 2, 2, 0, 0, 0, 
+Instrument6List		db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 13, 13, 13, 13, 13, 13, 13, 0, 0, 0, 0, 0, 0, 0, 
+Instrument7List		db	0, 0, 0, 0, 14, 14, 15, 16, 0, 0, 0, 0, 0, 17, 0, 0, 0, 18, 0, 0, 19, 0, 20, 0, 0, 0, 0, 19, 0, 0, 21, 22, 23, 0, 0, 0, 0, 0, 0, 
+Instrument8List		db	0, 0, 0, 0, 0, 0, 0, 0, 24, 0, 0, 0, 5, 6, 25, 26, 27, 0, 11, 2, 2, 27, 2, 2, 3, 2, 2, 2, 28, 2, 5, 2, 2, 9, 2, 2, 0, 0, 0, 
+Instrument9List		db	25, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 11, 29, 5, 30, 31, 4, 29, 2, 2, 31, 2, 2, 4, 2, 2, 2, 29, 2, 9, 2, 32, 2, 2, 2, 0, 0, 0, 
+Instrument10List		db	0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 33, 0, 34, 0, 35, 0, 36, 0, 36, 0, 37, 38, 38, 38, 38, 38, 38, 38, 39, 0, 0, 0, 0, 0, 0, 
+Instrument11List		db	0, 40, 40, 40, 41, 41, 0, 0, 42, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 43, 0, 44, 0, 40, 0, 40, 0, 40, 0, 40, 45, 46, 0, 47, 48, 0, 0, 0, 
+Instrument12List		db	0, 0, 0, 0, 0, 0, 5, 2, 2, 2, 2, 2, 2, 2, 0, 0, 25, 2, 2, 0, 49, 0, 0, 0, 5, 2, 19, 2, 2, 2, 2, 0, 19, 2, 2, 2, 0, 0, 0, 
+Instrument13List		db	0, 0, 0, 0, 0, 0, 25, 2, 2, 2, 2, 2, 2, 2, 0, 0, 4, 2, 2, 0, 0, 0, 0, 0, 29, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
+Instrument14List		db	0, 0, 0, 0, 0, 0, 29, 2, 2, 2, 2, 2, 2, 2, 0, 0, 6, 2, 2, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
+Instrument15List		db	0, 0, 0, 0, 0, 0, 11, 2, 2, 2, 2, 2, 2, 2, 0, 0, 11, 2, 2, 0, 0, 0, 0, 0, 11, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 
 go4k_pattern_lists_end
 %ifdef USE_SECTIONS
 section .g4kmuc3 data align=1
@@ -580,6 +593,34 @@ GO4K_BEGIN_CMDDEF(Instrument4)
 	db GO4K_ENV_ID
 	db GO4K_FOP_ID
 	db GO4K_FOP_ID
+	db GO4K_PAN_ID
+	db GO4K_OUT_ID
+GO4K_END_CMDDEF
+GO4K_BEGIN_CMDDEF(Instrument5)
+	db GO4K_ENV_ID
+	db GO4K_ENV_ID
+	db GO4K_VCO_ID
+	db GO4K_FOP_ID
+	db GO4K_VCF_ID
+	db GO4K_DST_ID
+	db GO4K_DLL_ID
+	db GO4K_FOP_ID
+	db GO4K_VCF_ID
+	db GO4K_FST_ID
+	db GO4K_PAN_ID
+	db GO4K_OUT_ID
+GO4K_END_CMDDEF
+GO4K_BEGIN_CMDDEF(Instrument6)
+	db GO4K_ENV_ID
+	db GO4K_ENV_ID
+	db GO4K_VCO_ID
+	db GO4K_FOP_ID
+	db GO4K_VCF_ID
+	db GO4K_DST_ID
+	db GO4K_DLL_ID
+	db GO4K_FOP_ID
+	db GO4K_VCF_ID
+	db GO4K_FST_ID
 	db GO4K_PAN_ID
 	db GO4K_OUT_ID
 GO4K_END_CMDDEF
@@ -696,7 +737,6 @@ GO4K_BEGIN_CMDDEF(Instrument12)
 	db GO4K_FLD_ID
 	db GO4K_FOP_ID
 	db GO4K_DLL_ID
-	db GO4K_VCF_ID
 	db GO4K_VCF_ID
 	db GO4K_PAN_ID
 	db GO4K_OUT_ID
@@ -866,6 +906,34 @@ GO4K_BEGIN_PARAMDEF(Instrument4)
 	GO4K_PAN	PANNING(83)
 	GO4K_OUT	GAIN(128), AUXSEND(16)
 GO4K_END_PARAMDEF
+GO4K_BEGIN_PARAMDEF(Instrument5)
+	GO4K_ENV	ATTAC(88),DECAY(0),SUSTAIN(128),RELEASE(94),GAIN(128)
+	GO4K_ENV	ATTAC(99),DECAY(65),SUSTAIN(72),RELEASE(96),GAIN(128)
+	GO4K_VCO	TRANSPOSE(64),DETUNE(64),PHASE(0),GATES(85),COLOR(64),SHAPE(127),GAIN(95),FLAGS(NOISE)
+	GO4K_FOP	OP(FOP_MULP)
+	GO4K_VCF	FREQUENCY(26),RESONANCE(128),VCFTYPE(HIGHPASS)
+	GO4K_DST	DRIVE(44), SNHFREQ(128), FLAGS(0)
+	GO4K_DLL	PREGAIN(111),DRY(128),FEEDBACK(127),DAMP(46),FREQUENCY(0),DEPTH(0),DELAY(0),COUNT(1)
+	GO4K_FOP	OP(FOP_MULP)
+	GO4K_VCF	FREQUENCY(77),RESONANCE(96),VCFTYPE(LOWPASS)
+	GO4K_FST	AMOUNT(69),DEST(10*MAX_UNIT_SLOTS+0+FST_SET)
+	GO4K_PAN	PANNING(45)
+	GO4K_OUT	GAIN(6), AUXSEND(10)
+GO4K_END_PARAMDEF
+GO4K_BEGIN_PARAMDEF(Instrument6)
+	GO4K_ENV	ATTAC(0),DECAY(0),SUSTAIN(128),RELEASE(64),GAIN(128)
+	GO4K_ENV	ATTAC(62),DECAY(65),SUSTAIN(0),RELEASE(64),GAIN(128)
+	GO4K_VCO	TRANSPOSE(64),DETUNE(64),PHASE(0),GATES(85),COLOR(64),SHAPE(127),GAIN(95),FLAGS(NOISE)
+	GO4K_FOP	OP(FOP_MULP)
+	GO4K_VCF	FREQUENCY(26),RESONANCE(128),VCFTYPE(HIGHPASS)
+	GO4K_DST	DRIVE(44), SNHFREQ(128), FLAGS(0)
+	GO4K_DLL	PREGAIN(111),DRY(128),FEEDBACK(127),DAMP(46),FREQUENCY(0),DEPTH(0),DELAY(0),COUNT(1)
+	GO4K_FOP	OP(FOP_MULP)
+	GO4K_VCF	FREQUENCY(77),RESONANCE(96),VCFTYPE(LOWPASS)
+	GO4K_FST	AMOUNT(69),DEST(10*MAX_UNIT_SLOTS+0+FST_SET)
+	GO4K_PAN	PANNING(45)
+	GO4K_OUT	GAIN(9), AUXSEND(21)
+GO4K_END_PARAMDEF
 GO4K_BEGIN_PARAMDEF(Instrument7)
 	GO4K_ENV	ATTAC(0),DECAY(54),SUSTAIN(13),RELEASE(29),GAIN(128)
 	GO4K_VCO	TRANSPOSE(91),DETUNE(64),PHASE(20),GATES(0),COLOR(73),SHAPE(34),GAIN(128),FLAGS(SINE)
@@ -876,7 +944,7 @@ GO4K_BEGIN_PARAMDEF(Instrument7)
 	GO4K_DST	DRIVE(125), SNHFREQ(128), FLAGS(0)
 	GO4K_VCF	FREQUENCY(23),RESONANCE(0),VCFTYPE(HIGHPASS)
 	GO4K_FOP	OP(FOP_MULP)
-	GO4K_DLL	PREGAIN(65),DRY(128),FEEDBACK(42),DAMP(128),FREQUENCY(0),DEPTH(0),DELAY(0),COUNT(1)
+	GO4K_DLL	PREGAIN(65),DRY(128),FEEDBACK(42),DAMP(128),FREQUENCY(0),DEPTH(0),DELAY(17),COUNT(1)
 	GO4K_PAN	PANNING(64)
 	GO4K_OUT	GAIN(64), AUXSEND(0)
 GO4K_END_PARAMDEF
@@ -909,11 +977,11 @@ GO4K_BEGIN_PARAMDEF(Instrument9)
 	GO4K_FST	AMOUNT(70),DEST(3*MAX_UNIT_SLOTS+5+FST_SET)
 	GO4K_FOP	OP(FOP_POP)
 	GO4K_FST	AMOUNT(54),DEST(15*MAX_UNIT_SLOTS+0+FST_SET)
-	GO4K_DLL	PREGAIN(64),DRY(96),FEEDBACK(64),DAMP(64),FREQUENCY(0),DEPTH(0),DELAY(17),COUNT(1)
+	GO4K_DLL	PREGAIN(64),DRY(96),FEEDBACK(64),DAMP(64),FREQUENCY(0),DEPTH(0),DELAY(18),COUNT(1)
 	GO4K_VCF	FREQUENCY(32),RESONANCE(100),VCFTYPE(HIGHPASS)
 	GO4K_VCF	FREQUENCY(54),RESONANCE(64),VCFTYPE(LOWPASS)
 	GO4K_PAN	PANNING(64)
-	GO4K_OUT	GAIN(32), AUXSEND(70)
+	GO4K_OUT	GAIN(24), AUXSEND(64)
 GO4K_END_PARAMDEF
 GO4K_BEGIN_PARAMDEF(Instrument10)
 	GO4K_ENV	ATTAC(0),DECAY(64),SUSTAIN(0),RELEASE(64),GAIN(128)
@@ -932,8 +1000,8 @@ GO4K_BEGIN_PARAMDEF(Instrument10)
 	GO4K_VCF	FREQUENCY(35),RESONANCE(64),VCFTYPE(LOWPASS)
 	GO4K_DLL	PREGAIN(28),DRY(128),FEEDBACK(24),DAMP(112),FREQUENCY(0),DEPTH(0),DELAY(9),COUNT(8)
 	GO4K_VCF	FREQUENCY(64),RESONANCE(64),VCFTYPE(HIGHPASS)
-	GO4K_DLL	PREGAIN(64),DRY(128),FEEDBACK(64),DAMP(113),FREQUENCY(0),DEPTH(0),DELAY(18),COUNT(1)
-	GO4K_DLL	PREGAIN(64),DRY(128),FEEDBACK(64),DAMP(113),FREQUENCY(0),DEPTH(0),DELAY(0),COUNT(1)
+	GO4K_DLL	PREGAIN(64),DRY(128),FEEDBACK(64),DAMP(113),FREQUENCY(0),DEPTH(0),DELAY(19),COUNT(1)
+	GO4K_DLL	PREGAIN(64),DRY(128),FEEDBACK(64),DAMP(113),FREQUENCY(0),DEPTH(0),DELAY(19),COUNT(1)
 	GO4K_PAN	PANNING(40)
 	GO4K_OUT	GAIN(21), AUXSEND(113)
 GO4K_END_PARAMDEF
@@ -967,8 +1035,8 @@ GO4K_BEGIN_PARAMDEF(Instrument11)
 GO4K_END_PARAMDEF
 GO4K_BEGIN_PARAMDEF(Instrument12)
 	GO4K_ENV	ATTAC(107),DECAY(0),SUSTAIN(128),RELEASE(92),GAIN(31)
-	GO4K_FST	AMOUNT(128),DEST(16*MAX_UNIT_SLOTS+1+FST_SET)
-	GO4K_FST	AMOUNT(99),DEST(16*MAX_UNIT_SLOTS+0+FST_SET)
+	GO4K_FST	AMOUNT(128),DEST(15*MAX_UNIT_SLOTS+1+FST_SET)
+	GO4K_FST	AMOUNT(96),DEST(15*MAX_UNIT_SLOTS+0+FST_SET)
 	GO4K_FST	AMOUNT(48),DEST(7*MAX_UNIT_SLOTS+3+FST_SET+FST_POP)
 	GO4K_VCO	TRANSPOSE(64),DETUNE(64),PHASE(0),GATES(0),COLOR(64),SHAPE(64),GAIN(128),FLAGS(NOISE)
 	GO4K_VCF	FREQUENCY(40),RESONANCE(128),VCFTYPE(LOWPASS)
@@ -980,7 +1048,6 @@ GO4K_BEGIN_PARAMDEF(Instrument12)
 	GO4K_FOP	OP(FOP_ADDP)
 	GO4K_DLL	PREGAIN(64),DRY(51),FEEDBACK(100),DAMP(106),FREQUENCY(26),DEPTH(79),DELAY(9),COUNT(8)
 	GO4K_VCF	FREQUENCY(11),RESONANCE(1),VCFTYPE(PEAK)
-	GO4K_VCF	FREQUENCY(128),RESONANCE(53),VCFTYPE(HIGHPASS)
 	GO4K_PAN	PANNING(64)
 	GO4K_OUT	GAIN(0), AUXSEND(0)
 GO4K_END_PARAMDEF
@@ -1074,6 +1141,7 @@ _go4k_delay_times
 	dw 1516
 	dw 1580
 	dw 1642
+	dw 16537
 	dw 44100
 	dw 65535
 %endif
