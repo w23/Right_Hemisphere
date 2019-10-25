@@ -10,7 +10,7 @@ parser.add_argument('--shader', type=argparse.FileType('w'), default='shader.gls
 parser.add_argument('--verbose', action='store_true', help='Be verbose')
 parser.add_argument('--printf', action='store_true', help='Add printf to debug envelope unpacking')
 parser.add_argument('--printf2', action='store_true', help='Add even more printf to debug envelope unpacking')
-parser.add_argument('--vprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored values')
+#parser.add_argument('--vprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored values')
 #parser.add_argument('--tprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored times')
 parser.add_argument('--noshort', action='store_true', help='Don\'t rename uniforms')
 parser.add_argument('input', type=argparse.FileType('r'), help='Input intro.txt file (json)')
@@ -24,6 +24,24 @@ shader = shader.replace('precision highp float;', '').replace('varying vec2 coor
 
 args.shader.write(shader)
 
+class ArrayDeltaF32:
+    def __init__(self, name, values):
+        self.name = name
+        self.type = 'float'
+        self.values = []
+        pv = 0
+        for v in values:
+            self.values.append(v - pv)
+            pv = v
+
+def writeArrayC(array):
+    out = '#pragma data_seg(\".{}\")\n'.format(array.name)
+    out += 'static const {} {}[] = {{\n'.format(array.type, array.name)
+    for v in array.values:
+        out += '\t{},\n'.format(v)
+    return out + '};\n\n'
+
+"""
 def writeArrayDeltaF32(name, values):
     out = '#pragma data_seg(\".{}\")\n'.format(name)
     out += 'static const float {}[] = {{\n'.format(name)
@@ -46,19 +64,20 @@ def writeArrayDeltaU16(name, values):
         out += '\t{},\n'.format((vu16 - pv) & 0xffff)
         pv = vu16
     args.automation.write(out + '};\n\n')
+""" and None
 
 #writeTimes = None
 #if args.tprec == 'df32':
-writeTimes = writeArrayDeltaF32
+arrayTimes = ArrayDeltaF32
 #elif args.tprec == 'du16':
 #    writeTimes = writeArrayDeltaU16
 
 
-writeValues = None
-if args.vprec == 'df32':
-    writeValues = writeArrayDeltaF32
-elif args.vprec == 'du16':
-    writeValues = writeArrayDeltaU16
+#writeValues = None
+#if args.vprec == 'df32':
+arrayValues = ArrayDeltaF32
+#elif args.vprec == 'du16':
+    #writeValues = writeArrayDeltaU16
 
 class Uniform:
     def __init__(self, name, data):
@@ -84,14 +103,16 @@ class Uniform:
         self.uniform_name = '"{}"'.format(name) if args.noshort else 'VAR_' + name.upper()
         self.length = len(ktimes)
 
-        writeTimes("udtimes_" + name, ktimes)
-        writeValues("udvalues_" + name, values)
+        self.times = arrayTimes("udtimes_" + name, ktimes)
+        self.values = arrayValues("udvalues_" + name, values)
+
+        args.automation.write(writeArrayC(self.times) + writeArrayC(self.values))
 
 uniforms = [Uniform(k, v) for k, v in uniforms.items()]
 
 reader_C = '#pragma code_seg(".setUniform")\n'
 
-if args.vprec == 'df32':
+if True: #args.vprec == 'df32':
     reader_C += """
 static void setUniform(GLuint prog, const char *name, float t, const float *dtimes, const float *dvalues, int len) {
 """
@@ -118,7 +139,7 @@ static void setUniform(GLuint prog, const char *name, float t, const float *dtim
         t -= dt;
     }
 """
-elif args.vprec == 'du16':
+elif False: #args.vprec == 'du16':
     reader_C += """
 static void setUniform(GLuint prog, const char *name, float t, const float *dtimes, const unsigned short *dvalues, float vbase, float vdelta, int len) {
 """
@@ -165,9 +186,9 @@ args.automation.write('static __forceinline void setUniforms(GLuint prog, float 
 if args.printf:
     args.automation.write('\tprintf("\\n%.3f ", t);\n')
 for u in uniforms:
-    if args.vprec == 'df32':
+    if True: #args.vprec == 'df32':
         args.automation.write('\tsetUniform(prog, {}, t, udtimes_{}, udvalues_{}, {});\n'.format(u.uniform_name, u.name, u.name, u.length))
-    elif args.vprec == 'du16':
-        args.automation.write(
-            '\tsetUniform(prog, {}, t, udtimes_{}, udvalues_{}, udvalues_{}_base, udvalues_{}_delta, {});\n'.format(u.uniform_name, u.name, u.name, u.name, u.name, u.length))
+    #elif args.vprec == 'du16':
+     #   args.automation.write(
+      #      '\tsetUniform(prog, {}, t, udtimes_{}, udvalues_{}, udvalues_{}_base, udvalues_{}_delta, {});\n'.format(u.uniform_name, u.name, u.name, u.name, u.name, u.length))
 args.automation.write('}\n')
