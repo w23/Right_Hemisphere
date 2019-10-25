@@ -202,11 +202,11 @@ end:
 '''
 elif out_format == 'glsl':
     head = None
-    count = 0
-    for u in uniforms:
-        count = max(count, len(u.times.values))
+    #count = 0
+    #for u in uniforms:
+        #count = max(count, len(u.times.values))
+    tl = ''
 
-    tl = '\t{{\n\t\tfloat dtt[{0}], dvt[{0}], T, v;\n'.format(count)
     #tl = '\tfloat T, v;\n'
     #tl += '#define Q(a,b) if(T<a){v+=T*b/a;break;}T-=a;v+=b\n'
     #tl += '#define Q(a,b) if(T<=a)v+=t*b/a;T-=a;v+=b\n'
@@ -220,14 +220,19 @@ elif out_format == 'glsl':
         #tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
 
         count = len(u.times.values)
-        for i, v in enumerate(u.times.values):
-            tl += '\t\tdtt[{}] = {:.3f};\n'.format(i, v)
+        tl += '\t{{\n\t\tfloat T=t,v=0.,dtt[{0}]=float[]{{'.format(count)
+        sep = '\n\t\t\t'
+        for v in u.times.values:
+            tl += '{}{:.3f}'.format(sep, v)
+            sep = ',\n\t\t\t'
 
-        for i, v in enumerate(u.values.values):
-            tl += '\t\tdvt[{}] = {:.3f};\n'.format(i, v)
+        tl += '}},\n\t\t\tdvt[{0}]=float[]{{'.format(count)
+        sep = '\n\t\t\t'
+        for v in u.values.values:
+            tl += '{}{:.3f}'.format(sep, v)
+            sep = ',\n\t\t\t'
 
-        tl += '''
-        T = t; v = 0.;
+        tl += '''}};
         for (int i = 0; i < {1}; ++i) {{
             //float dt = dt{0}[i], dv = dv{0}[i];
             if (T < dtt[i]) {{
@@ -238,6 +243,7 @@ elif out_format == 'glsl':
             T -= dtt[i];
         }}
         {0} = v;
+    }}
 '''.format(u.name, count)
 
         '''
