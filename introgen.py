@@ -202,7 +202,11 @@ end:
 '''
 elif out_format == 'glsl':
     head = None
-    tl = ''
+    count = 0
+    for u in uniforms:
+        count = max(count, len(u.times.values))
+
+    tl = '\t{{\n\t\tfloat dtt[{0}], dvt[{0}], T, v;\n'.format(count)
     #tl = '\tfloat T, v;\n'
     #tl += '#define Q(a,b) if(T<a){v+=T*b/a;break;}T-=a;v+=b\n'
     #tl += '#define Q(a,b) if(T<=a)v+=t*b/a;T-=a;v+=b\n'
@@ -215,28 +219,25 @@ elif out_format == 'glsl':
         #tl += '\tT=t;{}=0.;\n\t'.format(u.name)
         #tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
 
-        tl += '\t{'
-
         count = len(u.times.values)
-        tl += '\t\tfloat dtt[{0}], dvt[{0}];\n'.format(count)
         for i, v in enumerate(u.times.values):
-            tl += '\t\tdtt[{}] = {:.7f};\n'.format(i, v)
+            tl += '\t\tdtt[{}] = {:.3f};\n'.format(i, v)
 
         for i, v in enumerate(u.values.values):
-            tl += '\t\tdvt[{}] = {:.7f};\n'.format(i, v)
+            tl += '\t\tdvt[{}] = {:.3f};\n'.format(i, v)
 
         tl += '''
-        float T = t; {0} = 0.;
+        T = t; v = 0.;
         for (int i = 0; i < {1}; ++i) {{
             //float dt = dt{0}[i], dv = dv{0}[i];
-            if (dtt[i] >= T) {{
-                {0} += T * dvt[i] / dtt[i];
+            if (T < dtt[i]) {{
+                v += dvt[i] * T / dtt[i];
                 break;
             }}
-            {0} += dvt[i];
+            v += dvt[i];
             T -= dtt[i];
         }}
-    }}
+        {0} = v;
 '''.format(u.name, count)
 
         '''
@@ -248,6 +249,8 @@ elif out_format == 'glsl':
                     #tl += '\t\tQ({:.3f}, {:.3f});\n'.format(u.times.values[i], u.values.values[i])
                 tl += '\t\t{} = v;\n\t}}'.format(u.name)
         ''' and None
+
+    tl += '\t}\n'
 
     #shader = re.sub('uniform([\n.])*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
     shader = head + ';\n' + shader
