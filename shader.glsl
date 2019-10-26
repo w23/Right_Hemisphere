@@ -23,12 +23,6 @@ vec3 rotate(vec3 p, vec3 a)
 }
 
 
-vec3 fill(float x, float y, float z)
-{
-    return vec3(x*4.-2.,y*4.-2.,z*4.-2.);
-}
-
-
 float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 {
     vec3 p, r; // moved vector, rotation
@@ -220,23 +214,21 @@ void main() {
     
 // objects coordinates
 
-    massive[0] = fill(.044677,.928527,.337524);
-    massive[1] = fill(.520019,.026367,.486328);
-    massive[2] = fill(.026125,.984497,.337249);
-    massive[3] = fill(.635498,.420410,.417480);
-    massive[4] = fill(.558349,.929687,.849609);
-    massive[5] = fill(.840576,.539917,.436889);
-    massive[6] = fill(.096557,.049438,.537475);
-    massive[7] = fill(.439819,.906127,.853759);
-    massive[8] = fill(.291748,.754150,.479736);
-    massive[9] = fill(.572753,.774047,.402343);
-    massive[10]= fill(.565551,.614624,.542602);
-    massive[11]= fill(.279052,.261779,.264550);
-    massive[12]= fill(.622070,.145751,.537809);
-    massive[13]= fill(.846801,.820800,.397094);
-    massive[14]= fill(.905029,.469421,.400512);
-    massive[15]= fill(.725585,.835769,.054077);    
-    
+    massive[0] = vec3(-1.821292,1.714108,-0.649904);
+    massive[1] = vec3(.080076,-1.894532,-0.054688);
+    massive[2] = vec3(-1.8955,1.937988,-0.651004);
+    massive[3] = vec3(.541992,-0.31836,-0.33008);
+    massive[4] = vec3(.233396,1.718748,1.398436);
+    massive[5] = vec3(1.362304,.159668,-0.252444);;
+    massive[6] = vec3(.193114,-1.802248,.1499);
+    massive[7] = vec3(-0.240724,1.624508,1.415036);
+    massive[8] = vec3(-0.833008,1.0166,-0.081056);
+    massive[9] = vec3(.291012,1.096188,-0.390628);
+    massive[10]= vec3(.262204,.458496,.170408);
+    massive[11]= vec3(-0.883792,-0.952884,-0.9418);
+    massive[12]= vec3(.48828,-1.416996,.151236);
+    massive[13]= vec3(1.387204,1.2832,-0.411624);
+    massive[14]= vec3(1.620116,-0.122316,-0.397952);
     massive[11]-=shift11/vec3(70.,110.,-180.); // move closest object 
 
     float l, d, d2, e = .0001, aax, aay = .00015; // ray length, current distance, epsilon, anti-aliasing
