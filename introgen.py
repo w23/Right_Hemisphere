@@ -3,7 +3,6 @@ import json
 import sys
 import re
 import argparse
-import re
 
 parser = argparse.ArgumentParser(description='Convert envelopster export into buildable intro sources')
 parser.add_argument('--automation', type=argparse.FileType('w'), default='automation.c', help='Output automation file (c/asm)')
@@ -207,6 +206,12 @@ elif out_format == 'glsl':
         #count = max(count, len(u.times.values))
     tl = ''
 
+    patch = {}
+    seq = 0
+
+    minify = re.compile('0*$')
+    minify2 = re.compile('0\(\.[0-9]\)')
+
     #tl = '\tfloat T, v;\n'
     #tl += '#define Q(a,b) if(T<a){v+=T*b/a;break;}T-=a;v+=b\n'
     #tl += '#define Q(a,b) if(T<=a)v+=t*b/a;T-=a;v+=b\n'
@@ -220,22 +225,32 @@ elif out_format == 'glsl':
         #tl += '\tfor(int i=0;i<1;++i){\n\tfloat T=t,v=0.,dt,dv;\n'#.format(u.name)
 
         count = len(u.times.values)
-        tl += '\t{{\n\t\tfloat T=t,v=0.,dtt[{0}],dvt[{0}];'.format(count)
+        tl += '\t{{\n\t\tfloat T=t,v=0.,dtt[{0}]=DTT{1}_,dvt[{0}]=DVT{1}_;'.format(count, seq)
         #tl += '/*\t{{\n\t\tfloat T=t,v=0.,dtt[{0}]=float[]('.format(count)
-        tl += '\n#\'float b=x,l=0.,a[{0}]=float[]('.format(count)
+        #tl += '/*\t{{\n\t\t"float g=s,o=0.,u[{0}]=float[]('.format(count)
         sep = ''
+        dtt = 'float[]('
         for v in u.times.values:
-            tl += '{}{:.3f}'.format(sep, v)
+            dtt += minify2.sub('\1', minify.sub('', '{}{:.7f}'.format(sep, v)))
             sep = ','
+        dtt += ')'
 
         #tl += '),dvt[{0}]=float[]('.format(count)
-        tl += '),e[{0}]=float[]('.format(count)
+        #tl += '),h[{0}]=float[]('.format(count)
+        dvt = 'float[]('
         sep = ''
         for v in u.values.values:
-            tl += '{}{:.3f}'.format(sep, v)
+            dvt += minify2.sub('\1', minify.sub('', '{}{:.7f}'.format(sep, v)))
             sep = ','
+        dvt += ')'
 
-        tl += ''');'\n
+        patch['DTT{}_'.format(seq)] = dtt
+        patch['DVT{}_'.format(seq)] = dvt
+
+        seq += 1
+
+        #tl += ''');'\n
+        tl += '''
         for (int i = 0; i < {1}; ++i) {{
             //float dt = dt{0}[i], dv = dv{0}[i];
             if (T < dtt[i]) {{
@@ -258,6 +273,8 @@ elif out_format == 'glsl':
                     #tl += '\t\tQ({:.3f}, {:.3f});\n'.format(u.times.values[i], u.values.values[i])
                 tl += '\t\t{} = v;\n\t}}'.format(u.name)
         ''' and None
+
+    json.dump(patch, args.automation)
 
     #tl += '\t}\n'
 
