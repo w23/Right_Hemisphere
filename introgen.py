@@ -278,9 +278,9 @@ elif out_format == 'glsl':
 
     #tl += '\t}\n'
 
-    #shader = re.sub('uniform([\n.])*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
-    shader = '#version 120\n' + head + ';\n' + shader
-    shader = shader.replace('void main() {', 'void main() {\n' + tl)
+    shader = re.sub('uniform[a-zA-Z0-9\s,]*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
+    shader = '#version 120\n' + shader
+    shader = re.sub('(void main\(\)\s*{)', 'void main() {\n' + tl, shader, 0, re.MULTILINE)
 
 print('Writing shader into {}...'.format(args.shader.name))
 args.shader.write(shader)

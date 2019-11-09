@@ -1,11 +1,12 @@
 #version 120
-float Fade, shift11, zoomshift, steps, greyscale, greyscale2, timeshift, shiftX, shiftY, zoomXY, red, skip, distort;
 // Right Hemisphere intro
 
 
 
 
 uniform float t;
+float Fade, shift11, zoomshift, steps, greyscale, greyscale2, timeshift, shiftX, shiftY, zoomXY, red, skip, distort;
+
 
 
 vec3 massive[16]; // coordinates
@@ -214,22 +215,21 @@ void main() {
     
 // objects coordinates
 
-    massive[0] = vec3(-1.821292,1.714108,-0.649904);
-    massive[1] = vec3(.080076,-1.894532,-0.054688);
-    massive[2] = vec3(-1.8955,1.937988,-0.651004);
-    massive[3] = vec3(.541992,-0.31836,-0.33008);
-    massive[4] = vec3(.233396,1.718748,1.398436);
-    massive[5] = vec3(1.362304,.159668,-0.252444);;
-    massive[6] = vec3(.193114,-1.802248,.1499);
-    massive[7] = vec3(-0.240724,1.624508,1.415036);
-    massive[8] = vec3(-0.833008,1.0166,-0.081056);
-    massive[9] = vec3(.291012,1.096188,-0.390628);
-    massive[10]= vec3(.262204,.458496,.170408);
-    massive[11]= vec3(-0.883792,-0.952884,-0.9418);
-    massive[12]= vec3(.48828,-1.416996,.151236);
-    massive[13]= vec3(1.387204,1.2832,-0.411624);
-    massive[14]= vec3(1.620116,-0.122316,-0.397952);
-    massive[11]-=shift11/vec3(70.,110.,-180.); // move closest object 
+    massive[0] = vec3(.044677,.928527,.337524);
+    massive[1] = vec3(.520019,.026367,.486328);
+    massive[2] = vec3(.026125,.984497,.337249);
+    massive[3] = vec3(.635498,.42041, .41748);
+    massive[4] = vec3(.558349,.929687,.849609);
+    massive[5] = vec3(.840576,.539917,.436889);
+    massive[6] = vec3(.096557,.049438,.537475);
+    massive[7] = vec3(.439819,.906127,.853759);
+    massive[8] = vec3(.291748,.75415, .479736);
+    massive[9] = vec3(.572753,.774047,.402343);
+    massive[10]= vec3(.565551,.614624,.542602);
+    massive[11]= vec3(.279052,.261779,.16455) - shift11/vec3(70.,110.,-180.);
+    massive[12]= vec3(.62207, .145751,.537809);
+    massive[13]= vec3(.846801,.8208,  .397094);
+    massive[14]= vec3(.905029,.469421,.400512);
 
     float l, d, d2, e = .0001, aax, aay = .00015; // ray length, current distance, epsilon, anti-aliasing
 
@@ -256,11 +256,10 @@ for (int bx=0; bx<3; bx++)
 		d = 26.; // distance
 	    for (int j=0; j<15; j++) if(j!=int(skip))
 	    {
-	        c = massive[j];
+	        c = massive[j]*4.-vec3(2.);
 	        c.z = ( c.z + zoom ) * 4.;
 	        d = min( d, length(xyz*l - c)-0.71 ); // sphere distance function
 	    }
-        if (d<e) break;
         l += d;
         if (l>26.) break;
     }
@@ -270,9 +269,9 @@ for (int bx=0; bx<3; bx++)
         if (mod(uv.y,.08)<.04) l-=distort;
         xyz *= l; // actual point
 	    d = 26.;
-	    for (int i=0; i<15; i++)
+	    for (int j=0; j<15; j++)
 	    {
-	        c = massive[i];
+	        c = massive[j]*4.-vec3(2.);
 	        found1 = c;
 	        r = c;
 	        c.z = ( c.z + zoom ) * 4.;
@@ -293,7 +292,7 @@ for (int bx=0; bx<3; bx++)
     }
 
     
-    c = vec3(norm.xy,vec3(1.-l/20.));
+    c = vec3(norm.xy,1.-l/20.);
 
     c.z+=c.y/2.; c.y=c.y+c.x; // colour correction
 
