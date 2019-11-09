@@ -21,8 +21,8 @@ nasmw.exe -fwin32 -o intro.obj intro.asm
 
 link.exe ^
 	%OPTS% ^
-	/COMPMODE:FAST /REPORT:report-asm-fast.html ^
+	/COMPMODE:SLOW /ORDERTRIES:16000 /REPORT:report-asm-slow.html ^
 	%LIBS% ^
-	4klang.obj intro.obj /OUT:intro-asm-fast.exe
+	4klang.obj intro.obj /OUT:intro-asm-slow.exe
 
 pause
