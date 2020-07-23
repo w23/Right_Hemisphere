@@ -9,8 +9,7 @@ set OPTS= ^
 	/PRINT:IMPORTS ^
 	/PRINT:LABELS ^
 	/TRANSFORM:CALLS ^
-	/TINYIMPORT ^
-	/TINYHEADER
+	/TINYIMPORT
 
 set CLOPTS=/GS- /analyze- /W3 /Gy- /Zc:wchar_t /Zi /Gm- /O1 /Ob1 /sdl-  /Zc:inline /fp:fast /Zp1 /D "FULLSCREEN=1" /D "_MBCS" /errorReport:prompt /GF /WX- /Zc:forScope /GR- /arch:IA32 /Gz /Oy /MT /FC /nologo /Zl /FAcs /Os /diagnostics:classic /QIfist ^
 	/c

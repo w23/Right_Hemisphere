@@ -9,11 +9,12 @@ set OPTS= ^
 	/PRINT:IMPORTS ^
 	/PRINT:LABELS ^
 	/TRANSFORM:CALLS ^
-	/TINYIMPORT ^
-	/TINYHEADER
+	/TINYIMPORT
 
-python introgen.py --automation glsl shader.txt
-shader_minifier.exe --format nasm -o shader.glsl.inc shader.glsl
+REM very slow unpack, avoid /TINYHEADER
+
+REM python introgen.py --precision 8 --automation glsl shader.txt
+shader_minifier.exe -v --format nasm -o shader.glsl.inc shader.glsl
 python shaderpatch.py --patch shader.glsl.inc glsl
 
 nasmw.exe -fwin32 -o 4klang.obj 4klang.asm
