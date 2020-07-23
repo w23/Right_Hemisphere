@@ -13,6 +13,7 @@ parser.add_argument('--printf2', action='store_true', help='Add even more printf
 #parser.add_argument('--vprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored values')
 #parser.add_argument('--tprec', choices=['df32', 'du16'], default='df32', help='Precision and type of packing for stored times')
 parser.add_argument('--noshort', action='store_true', help='Don\'t rename uniforms')
+parser.add_argument('--precision', type=int, default=7, help='Digits to preserve after floating point')
 parser.add_argument('input', type=argparse.FileType('r'), help='Input intro.txt file (json)')
 args = parser.parse_args()
 
@@ -209,8 +210,11 @@ elif out_format == 'glsl':
     patch = {}
     seq = 0
 
-    minify = re.compile('0*$')
-    minify2 = re.compile('0\(\.[0-9]\)')
+    min_trailing_zeros = re.compile('0*$')
+    min_leading_zeros = re.compile('0(\.[0-9])')
+    minifmt = '{:.' + '{}'.format(args.precision) + 'f}'
+    def miniFloat(f):
+        return min_leading_zeros.sub('\\1', min_trailing_zeros.sub('', minifmt.format(f)))
 
     #tl = '\tfloat T, v;\n'
     #tl += '#define Q(a,b) if(T<a){v+=T*b/a;break;}T-=a;v+=b\n'
@@ -231,7 +235,8 @@ elif out_format == 'glsl':
         sep = ''
         dtt = 'float[]('
         for v in u.times.values:
-            dtt += minify2.sub('\1', minify.sub('', '{}{:.7f}'.format(sep, v)))
+            #dtt += min_leading_zeros.sub('\1', minify.sub('', '{}{:.7f}'.format(sep, v)))
+            dtt += sep + miniFloat(v)
             sep = ','
         dtt += ')'
 
@@ -240,7 +245,8 @@ elif out_format == 'glsl':
         dvt = 'float[]('
         sep = ''
         for v in u.values.values:
-            dvt += minify2.sub('\1', minify.sub('', '{}{:.7f}'.format(sep, v)))
+            #dvt += min_leading_zeros.sub('\1', minify.sub('', '{}{:.7f}'.format(sep, v)))
+            dvt += sep + miniFloat(v)
             sep = ','
         dvt += ')'
 
@@ -278,9 +284,9 @@ elif out_format == 'glsl':
 
     #tl += '\t}\n'
 
-    #shader = re.sub('uniform([\n.])*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
-    shader = '#version 120\n' + head + ';\n' + shader
-    shader = shader.replace('void main() {', 'void main() {\n' + tl)
+    shader = re.sub('uniform[a-zA-Z0-9\s,]*;', 'uniform float t;\n' + head + ';\n', shader, 0, re.MULTILINE)
+    shader = '#version 120\n' + shader
+    shader = re.sub('void main\(\)\s*{', 'void main() {\n' + tl, shader, 0, re.MULTILINE)
 
 print('Writing shader into {}...'.format(args.shader.name))
 args.shader.write(shader)
