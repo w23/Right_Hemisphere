@@ -1,0 +1,7 @@
+programs:
+  shader:
+    vertex: ../vertex.glsl
+    fragment: ../shader.glsl
+paint:
+  - useProgram: shader
+  - drawFullscreen
