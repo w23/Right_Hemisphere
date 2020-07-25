@@ -9,7 +9,7 @@
 uniform float t;
 varying float	w[13]; // array with current envelopes values
 
-float zoom;
+float zoom, tt;
 
 vec3 rotate(vec3 p, vec3 a)
 {
@@ -30,7 +30,7 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
     r = c;
     c.z = ( c.z + zoom ) * 4.;
     p = o - c; // move square to 0,0,0
-    p = rotate(p, t/29. * r); // rotate over axis x,y,z // rotate over axis x,y,z
+    p = rotate(p, tt/29. * r); // rotate over axis x,y,z // rotate over axis x,y,z
     r = max(p - s, -p - s); // differences
 
     return max(max(r.x,r.y),r.z); // cube distance function
@@ -38,9 +38,8 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 
 void main()
 {
-   /* FIXME */  // t += w[6]; // add timeshift
-
-    zoom = w[2] + smoothstep(120.,180.,t)*.6 - smoothstep(240.,300.,t); // w[2] ~ zoomshift
+		tt = t + w[6]; // add timeshift
+    zoom = w[2] + smoothstep(120.,180.,tt)*.6 - smoothstep(240.,300.,tt); // w[2] ~ zoomshift
 
     float l, d, d2, e = .0001, aax, aay = 0.17; // ray length, current distance, epsilon, anti-aliasing
 
@@ -114,7 +113,7 @@ void main()
 	        r = c;
 	        c.z = ( c.z + zoom ) * 4.;
 	        p = xyz - c; // move square to 0,0,0
-	        p = rotate(p, t/29. * r); // rotate over axis x,y,z
+	        p = rotate(p, tt/29. * r); // rotate over axis x,y,z
 	        r = max(p - s, -p - s); // differences
 	        d2 = max(max(r.x,r.y),r.z); // cube distance function
 	        if (d2 < d)
