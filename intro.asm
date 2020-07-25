@@ -1,17 +1,14 @@
 BITS 32
 
-%include "4klang.inc"
-extern __4klang_render@4
-
-%ifndef DEBUG
 WIDTH equ 1920
 HEIGHT equ 1080
+
+%ifndef DEBUG
 %define FULLSCREEN
 %define AUDIO_THREAD
 %define GLCHECK
 %else
-WIDTH equ 640
-HEIGHT equ 360
+%define NO_AUDIO
 %macro GLCHECK 0
 	call glGetError
 	test eax, eax
@@ -21,8 +18,18 @@ HEIGHT equ 360
 %endmacro
 %endif
 
+%ifndef NO_AUDIO
+%include "4klang.inc"
+extern __4klang_render@4
+%else
+%define SAMPLE_RATE 44100
+%define MAX_SAMPLES 44100*120
+%define SAMPLES_PER_TICK 44100/16
+%endif
+
 ;GL_TEXTURE_2D EQU 0x0de1
 GL_FRAGMENT_SHADER EQU 0x8b30
+GL_VERTEX_SHADER EQU 0x8b31
 ;GL_UNSIGNED_BYTE EQU 0x1401
 ;GL_FLOAT EQU 0x1406
 ;GL_RGBA EQU 0x1908
@@ -31,8 +38,6 @@ GL_FRAGMENT_SHADER EQU 0x8b30
 ;GL_RGBA16F EQU 0x881a
 ;GL_FRAMEBUFFER EQU 0x8d40
 ;GL_COLOR_ATTACHMENT0 EQU 0x8ce0
-
-global _entrypoint
 
 %macro WINAPI_FUNC 2
 %if 1
@@ -49,6 +54,9 @@ WINAPI_FUNC ChangeDisplaySettingsA, 8
 %endif
 %ifdef AUDIO_THREAD
 WINAPI_FUNC CreateThread, 24
+%endif
+%ifdef DEBUG
+WINAPI_FUNC MessageBoxA, 16
 %endif
 WINAPI_FUNC ChoosePixelFormat, 8
 WINAPI_FUNC CreateWindowExA, 48
@@ -90,7 +98,12 @@ section _ %+ %1 data align=1
 	db %1 %+ __str, 0
 %endmacro
 
-GL_FUNC glCreateShaderProgramv
+;GL_FUNC glCreateShaderProgramv
+GL_FUNC glCreateProgram
+GL_FUNC glCreateShader
+GL_FUNC glShaderSource
+GL_FUNC glAttachShader
+GL_FUNC glLinkProgram
 GL_FUNC glUseProgram
 GL_FUNC glGetUniformLocation
 ;GL_FUNC glUniform1i
@@ -101,7 +114,12 @@ GL_FUNC glUniform1f
 ;GL_FUNC glUniform1fv
 
 %ifdef DEBUG
-	WNDCLASS EQU static
+GL_FUNC glGetShaderInfoLog
+GL_FUNC glGetProgramInfoLog
+%endif
+
+%ifdef DEBUG
+	WNDCLASS EQU static_
 %else
 	%define WNDCLASS 0xc018
 %endif
@@ -162,30 +180,33 @@ section _sndbuf bss align=1
 tmp:
 sound_buffer: resd MAX_SAMPLES * 2
 
-section _shader data align=1
-%if 1
-%include "shader.glsl.inc"
-%else
-_intro_glsl:
-	db 'uniform int t;'
-	db 'float t = t/44100.;'
-	db 'void main(){gl_FragColor = vec4(sin(t));}'
+%ifdef DEBUG
+section _infolog bss align=1
+infolog: resb 1024
 %endif
+
+section _shader data align=1
+%include "shader.inc"
+
+section _shaderv data align=1
+%include "vertex.inc"
 
 section _shdrptr data align=1
-src_main:
+src_frag:
 	dd _shader_glsl
 
-%ifndef _var_T
+section _shdrptr2 data align=1
+src_vert:
+	dd _vertex_glsl
+
 section _strings data align=1
 %ifdef DEBUG
-static: db "static", 0
+static_: db 'static', 0
 %endif
-t: db 't', 0
-%endif
+_var_T: db 't', 0
 
 section _text text align=1
-_entrypoint:
+_start:
 %if 1
 	%define ZERO 0
 %else
@@ -207,7 +228,7 @@ _entrypoint:
 	FNCALL wglMakeCurrent, ebp, eax
 	GLCHECK
 
-%ifndef DEBUG
+%ifndef NO_AUDIO
 %ifdef AUDIO_THREAD
 	FNCALL CreateThread, ZERO, ZERO, __4klang_render@4, sound_buffer, ZERO, ZERO
 %else
@@ -215,9 +236,41 @@ _entrypoint:
 %endif
 %endif
 
-	FNCALL wglGetProcAddress, glCreateShaderProgramv
-	FNCALL eax, GL_FRAGMENT_SHADER, 1, src_main
+	FNCALL wglGetProcAddress, glCreateProgram
+	call eax
 	mov esi, eax
+
+%macro MAKE_SHADER 2
+	FNCALL wglGetProcAddress, glCreateShader
+	FNCALL eax, %1
+	mov ebx, eax
+
+	FNCALL wglGetProcAddress, glShaderSource
+	FNCALL eax, ebx, 1, %2, 0
+
+%ifdef DEBUG
+	FNCALL wglGetProcAddress, glGetShaderInfoLog
+	FNCALL eax, ebx, 1023, 0, infolog
+	FNCALL MessageBoxA, 0, infolog, infolog, 0
+%endif
+
+	FNCALL wglGetProcAddress, glAttachShader
+	FNCALL eax, esi, ebx
+	GLCHECK
+%endmacro
+
+	MAKE_SHADER GL_FRAGMENT_SHADER, src_frag
+	MAKE_SHADER GL_VERTEX_SHADER, src_vert
+
+	FNCALL wglGetProcAddress, glLinkProgram
+	FNCALL eax, esi
+
+%ifdef DEBUG
+	FNCALL wglGetProcAddress, glGetProgramInfoLog
+	FNCALL eax, esi, 1023, 0, infolog
+	FNCALL MessageBoxA, 0, infolog, infolog, 0
+%endif
+
 	FNCALL wglGetProcAddress, glUseProgram
 	FNCALL eax, esi
 	GLCHECK
@@ -252,33 +305,23 @@ _entrypoint:
 	push byte -1
 	push byte -1
 
-	; float time
 	push ebx
 	fild dword [esp]
-	%if 1 ;smaller?!
-	push SAMPLE_RATE * 8;SAMPLES_PER_TICK * 8 * 4
+	push SAMPLE_RATE * 8
 	fild dword [esp]
 	fdivp
 	pop ebx
-	%else
-	;mov dword [esp], SAMPLES_PER_TICK * 8 * 4
-	;fidiv dword [esp]
-	%endif
 	fstp dword [esp]
-
-	; glUniform1f(glGetUniformLocation(prog=esi, %1), st0)
-%macro CALL_GLUNIFORM1F_ST0 1
-	push %1
+	push _var_T
 	push esi
 	push glGetUniformLocation
+
 	call wglGetProcAddress
 	call eax
 	push eax
 	push glUniform1f
 	call wglGetProcAddress
 	call eax
-%endmacro
-	CALL_GLUNIFORM1F_ST0 _var_T
 
 	call glRects
 
