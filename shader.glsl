@@ -7,8 +7,7 @@
 #version 120
 //precision highp float;
 uniform float t;
-
-varying float	parameter[13]; // array with current envelopes values
+varying float	w[13]; // array with current envelopes values
 
 float zoom;
 
@@ -39,9 +38,9 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 
 void main()
 {
-   /* FIXME */  // t += parameter[6]; // add timeshift
+   /* FIXME */  // t += w[6]; // add timeshift
 
-    zoom = parameter[2] + smoothstep(120.,180.,t)*.6 - smoothstep(240.,300.,t); // parameter[2] ~ zoomshift
+    zoom = w[2] + smoothstep(120.,180.,t)*.6 - smoothstep(240.,300.,t); // w[2] ~ zoomshift
 
     float l, d, d2, e = .0001, aax, aay = 0.17; // ray length, current distance, epsilon, anti-aliasing
 
@@ -59,7 +58,7 @@ void main()
 	    vec3(.291748,.75415, .479736),
 	    vec3(.572753,.774047,.402343),
 	    vec3(.565551,.614624,.542602),
-	    vec3(.279052,.261779,.16455) - parameter[1]/vec3(70.,110.,-180.), // parameter[1] ~ shift11
+	    vec3(.279052,.261779,.16455) - w[1]/vec3(70.,110.,-180.), // w[1] ~ shift11
 	    vec3(.62207, .145751,.537809),
 	    vec3(.846801,.8208,  .397094),
 	    vec3(.905029,.469421,.400512)
@@ -79,7 +78,7 @@ void main()
 //{
 //	coordVar = (fragCoord + vec2(aax,aay)) / iResolution.xy;
     coordVar = gl_FragCoord.xy / vec2(1920., 1080.);
-    uv = (coordVar + vec2(parameter[7],parameter[8])) / vec2(1., 16./9.) *parameter[9]; // paremeter[7] ~ shiftX
+    uv = (coordVar + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
 
 // raymarching
 	l = 1.;
@@ -88,7 +87,7 @@ void main()
 
     for (int i=0; i<5; i++) // trace to bounding sphere for the faster computation
     {
-        if (i>=int(parameter[3])) break; // parameter[3] ~ steps
+        if (i>=int(w[3])) break; // w[3] ~ steps
 		d = 26.; // distance
 	    for (int j=0; j<15; j++) if(j!=int(4.))
 	    {
@@ -104,7 +103,7 @@ void main()
     
     if (l<26.)
     {
-       if (mod(uv.y,.08)<.04) l-=parameter[12]; // parameter[12] ~ distort
+       if (mod(uv.y,.08)<.04) l-=w[12]; // w[12] ~ distort
         xyz *= l; // actual point
         
 	    d = 26.;
@@ -144,8 +143,8 @@ void main()
 //    color /= 9.; // normalize aa-color
 
 
-    color = (1.-parameter[4])*color + vec3(color.r+color.b*parameter[5]) * parameter[4]; // parameter[4] ~ greyscale
-	color.xz+=parameter[10]*vec2(abs(norm.y),color.b/4.); // parameter[10] ~ red
+    color = (1.-w[4])*color + vec3(color.r+color.b*w[5]) * w[4]; // w[4] ~ greyscale
+	color.xz+=w[10]*vec2(abs(norm.y),color.b/4.); // w[10] ~ red
     
-    gl_FragColor = vec4(color * parameter[0], 1.); // parameter[0] ~ fade
+    gl_FragColor = vec4(color * w[0], 1.); // w[0] ~ fade
 }
