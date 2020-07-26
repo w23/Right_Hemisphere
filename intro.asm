@@ -58,6 +58,7 @@ WINAPI_FUNC CreateThread, 24
 %ifdef DEBUG
 WINAPI_FUNC MessageBoxA, 16
 %endif
+WINAPI_FUNC Sleep, 4
 WINAPI_FUNC ChoosePixelFormat, 8
 WINAPI_FUNC CreateWindowExA, 48
 WINAPI_FUNC ExitProcess, 4
@@ -214,6 +215,14 @@ _start:
 	xor ZERO, ZERO
 %endif
 
+%ifndef NO_AUDIO
+%ifdef AUDIO_THREAD
+	FNCALL CreateThread, ZERO, ZERO, __4klang_render@4, sound_buffer, ZERO, ZERO
+%else
+	FNCALL __4klang_render@4, sound_buffer
+%endif
+%endif
+
 %ifdef FULLSCREEN
 	FNCALL ChangeDisplaySettingsA, devmode, 4
 %endif
@@ -227,14 +236,6 @@ _start:
 	FNCALL wglCreateContext, ebp
 	FNCALL wglMakeCurrent, ebp, eax
 	GLCHECK
-
-%ifndef NO_AUDIO
-%ifdef AUDIO_THREAD
-	FNCALL CreateThread, ZERO, ZERO, __4klang_render@4, sound_buffer, ZERO, ZERO
-%else
-	FNCALL __4klang_render@4, sound_buffer
-%endif
-%endif
 
 	FNCALL wglGetProcAddress, glCreateProgram
 	call eax
@@ -274,6 +275,9 @@ _start:
 	FNCALL wglGetProcAddress, glUseProgram
 	FNCALL eax, esi
 	GLCHECK
+
+	; fake sleep
+	;FNCALL Sleep, 1000
 
 	; PLAY MUSIC
 	FNCALL waveOutOpen, waveout, byte -1, wavefmt, ZERO, ZERO, ZERO
