@@ -5,11 +5,10 @@
 // watch in fulscreen to enable vsync mode
 
 #version 120
-//precision highp float;
 uniform float t;
 varying float	w[13]; // array with current envelopes values
 
-float zoom, tt;
+float zoom, time;
 
 vec3 rotate(vec3 p, vec3 a)
 {
@@ -30,7 +29,7 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
     r = c;
     c.z = ( c.z + zoom ) * 4.;
     p = o - c; // move square to 0,0,0
-    p = rotate(p, tt/29. * r); // rotate over axis x,y,z // rotate over axis x,y,z
+    p = rotate(p, time/29. * r); // rotate over axis x,y,z // rotate over axis x,y,z
     r = max(p - s, -p - s); // differences
 
     return max(max(r.x,r.y),r.z); // cube distance function
@@ -38,8 +37,8 @@ float squareSingle(vec3 o, vec3 c) // input: ray position, square center
 
 void main()
 {
-		tt = t + w[6]; // add timeshift
-    zoom = w[2] + smoothstep(120.,180.,tt)*.6 - smoothstep(240.,300.,tt); // w[2] ~ zoomshift
+		time = t + w[6]; // add timeshift
+    zoom = w[2] + smoothstep(120.,180.,time)*.6 - smoothstep(240.,300.,time); // w[2] ~ zoomshift
 
     float l, d, d2, e = .0001, aax, aay = 0.17; // ray length, current distance, epsilon, anti-aliasing
 
@@ -67,17 +66,13 @@ void main()
     p, r, found1, found2, s = vec3(.5,.5,.001), // moved vector, center, rotation, found square, square size
     norm = vec3(0.), ex = vec3(e,0.,0.), ey = vec3(0.,e,0.), ez = vec3(0.,0.,e);
 
-    vec2 coordVar, uv;
-    
-//aay = 0.17; // antialiasing
-//for (int by=0; by<3; by++)
-//{
-//	aax = 0.17;
-//	for (int bx=0; bx<3; bx++)
-//{
-//	coordVar = (fragCoord + vec2(aax,aay)) / iResolution.xy;
-    coordVar = gl_FragCoord.xy / vec2(1920., 1080.);
-    uv = (coordVar + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
+aay = 0.17; // antialiasing
+for (int by=0; by<3; by++)
+{
+	aax = 0.17;
+	for (int bx=0; bx<3; bx++)
+{
+    vec2 uv = ((gl_FragCoord.xy + vec2(aax,aay)) / vec2(1920., 1080.) + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
 
 // raymarching
 	l = 1.;
@@ -88,13 +83,12 @@ void main()
     {
         if (i>=int(w[3])) break; // w[3] ~ steps
 		d = 26.; // distance
-	    for (int j=0; j<15; j++) if(j!=int(4.))
+	    for (int j=0; j<15; j++) if(j!=int(w[11])) // w[11] ~ skip
 	    {
 	        c = massive[j]*4.-vec3(2.);
 	        c.z = ( c.z + zoom ) * 4.;
 	        d = min( d, length(xyz*l - c)-0.71 ); // sphere distance function
 	    }
-//        if (d<e) break;
         l += d;
         if (l>26.) break;
     }
@@ -113,7 +107,7 @@ void main()
 	        r = c;
 	        c.z = ( c.z + zoom ) * 4.;
 	        p = xyz - c; // move square to 0,0,0
-	        p = rotate(p, tt/29. * r); // rotate over axis x,y,z
+	        p = rotate(p, time/29. * r); // rotate over axis x,y,z
 	        r = max(p - s, -p - s); // differences
 	        d2 = max(max(r.x,r.y),r.z); // cube distance function
 	        if (d2 < d)
@@ -121,8 +115,7 @@ void main()
 	            d = d2;
 	            found2 = found1;
 	        }
-	    }        
-//        c = findSquare(xyz); // find a square at the actual point
+	    }
         norm = normalize(vec3(
         squareSingle(xyz+ex,found2)-squareSingle(xyz-ex,found2),
         squareSingle(xyz+ey,found2)-squareSingle(xyz-ey,found2),
@@ -131,19 +124,18 @@ void main()
 
     
     c = vec3(norm.xy,1.-l/20.);
-    c+= vec3(0.,c.r,c.g/2.); // colour correction
-//    c.b+=c.g/2.; c.g=c.g+c.r; // colour correction
+    c+= vec3(0.,c.x,c.y/2.); // colour correction
     color += clamp(c, 0., 1.); // accumulate aa-color
 
-//    aax += .33; // end of antialiasing loop 
-//}
-//    aay += .33;
-//}  
-//    color /= 9.; // normalize aa-color
+    aax += .33; // end of antialiasing loop
+}
+    aay += .33;
+}
+    color /= 9.; // normalize aa-color
 
 
-    color = (1.-w[4])*color + vec3(color.r+color.b*w[5]) * w[4]; // w[4] ~ greyscale
-	color.xz+=w[10]*vec2(abs(norm.y),color.b/4.); // w[10] ~ red
+    color = (1.-w[4])*color + vec3(color.x+color.z*w[5]) * w[4]; // w[4] ~ greyscale
+	color.xz+=w[10]*vec2(abs(norm.y),color.z/4.); // w[10] ~ red
     
     gl_FragColor = vec4(color * w[0], 1.); // w[0] ~ fade
 }
