@@ -5,7 +5,7 @@ HEIGHT equ 720
 
 %ifndef DEBUG
 %define FULLSCREEN
-%define AUDIO_THREAD
+;%define AUDIO_THREAD
 %define GLCHECK
 %else
 %define NO_AUDIO
@@ -226,13 +226,6 @@ _start:
 	FNCALL ChangeDisplaySettingsA, devmode, 4
 %endif
 
-; start pre-synth after screen mode change
-%ifndef NO_AUDIO
-%ifndef AUDIO_THREAD
-	FNCALL __4klang_render@4, sound_buffer
-%endif
-%endif
-
 	FNCALL ShowCursor, ZERO
 	FNCALL CreateWindowExA, ZERO, WNDCLASS, ZERO, 0x90000000, ZERO, ZERO, WIDTH, HEIGHT, ZERO, ZERO, ZERO, ZERO
 	FNCALL GetDC, eax
@@ -284,6 +277,13 @@ _start:
 
 	; fake sleep
 	;FNCALL Sleep, 1000
+
+; start pre-synth after window is created
+%ifndef NO_AUDIO
+%ifndef AUDIO_THREAD
+	FNCALL __4klang_render@4, sound_buffer
+%endif
+%endif
 
 	; PLAY MUSIC
 	FNCALL waveOutOpen, waveout, byte -1, wavefmt, ZERO, ZERO, ZERO
