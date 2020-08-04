@@ -66,13 +66,17 @@ void main()
     p, r, found1, found2, s = vec3(.5,.5,.001), // moved vector, center, rotation, found square, square size
     norm = vec3(0.), ex = vec3(e,0.,0.), ey = vec3(0.,e,0.), ez = vec3(0.,0.,e);
 
-aay = 0.17; // antialiasing
-for (int by=0; by<3; by++)
-{
-	aax = 0.17;
-	for (int bx=0; bx<3; bx++)
-{
-    vec2 uv = ((gl_FragCoord.xy + vec2(aax,aay)) / vec2(1920., 1080.) + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
+/* AA preamble */
+//aay = 0.17; // antialiasing
+//for (int by=0; by<3; by++)
+//{
+//	aax = 0.17;
+//	for (int bx=0; bx<3; bx++)
+//{
+    //vec2 uv = ((gl_FragCoord.xy + vec2(aax,aay)) / vec2(1920., 1080.) + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
+    //vec2 uv = ((gl_FragCoord.xy + vec2(aax,aay)) / vec2(1280., 720.) + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
+/* end AA preable */
+    vec2 uv = (gl_FragCoord.xy / vec2(1280., 720.) + vec2(w[7],w[8])) / vec2(1., 16./9.) *w[9]; // paremeter[7] ~ shiftX
 
 // raymarching
 	l = 1.;
@@ -127,11 +131,13 @@ for (int by=0; by<3; by++)
     c+= vec3(0.,c.x,c.y/2.); // colour correction
     color += clamp(c, 0., 1.); // accumulate aa-color
 
+		/* AA
     aax += .33; // end of antialiasing loop
 }
     aay += .33;
 }
     color /= 9.; // normalize aa-color
+		*/
 
 
     color = (1.-w[4])*color + vec3(color.x+color.z*w[5]) * w[4]; // w[4] ~ greyscale

@@ -1,7 +1,7 @@
 BITS 32
 
-WIDTH equ 1920
-HEIGHT equ 1080
+WIDTH equ 1280
+HEIGHT equ 720
 
 %ifndef DEBUG
 %define FULLSCREEN
@@ -215,16 +215,22 @@ _start:
 	xor ZERO, ZERO
 %endif
 
+; create audio synthesizer thread early
 %ifndef NO_AUDIO
 %ifdef AUDIO_THREAD
 	FNCALL CreateThread, ZERO, ZERO, __4klang_render@4, sound_buffer, ZERO, ZERO
-%else
-	FNCALL __4klang_render@4, sound_buffer
 %endif
 %endif
 
 %ifdef FULLSCREEN
 	FNCALL ChangeDisplaySettingsA, devmode, 4
+%endif
+
+; start pre-synth after screen mode change
+%ifndef NO_AUDIO
+%ifndef AUDIO_THREAD
+	FNCALL __4klang_render@4, sound_buffer
+%endif
 %endif
 
 	FNCALL ShowCursor, ZERO
